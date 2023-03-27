@@ -7,10 +7,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
 {
+	public static function loadValidatorMetadata(ClassMetadata $metadata)
+	{
+		$metadata->addPropertyConstraint('rightAnswer', new Assert\Range([
+			'min' => 1,
+			'max' => 4,
+			'notInRangeMessage' => 'La valeur doit être entre {{ min }} et {{ max }}.',
+		]));
+	}
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -33,6 +43,9 @@ class Question
 
     #[ORM\Column]
     private ?bool $visible = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $rightAnswer = null;
 
     
 
@@ -111,6 +124,18 @@ class Question
     public function setVisible(bool $visible): self
     {
         $this->visible = $visible;
+
+        return $this;
+    }
+
+    public function getRightAnswer(): ?int
+    {
+        return $this->rightAnswer;
+    }
+
+    public function setRightAnswer(?int $rightAnswer): self
+    {
+        $this->rightAnswer = $rightAnswer;
 
         return $this;
     }

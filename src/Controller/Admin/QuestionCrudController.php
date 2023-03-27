@@ -6,6 +6,7 @@ use App\Entity\Question;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -26,7 +27,8 @@ class QuestionCrudController extends AbstractCrudController
 	        TextField::new('answer2'),
 	        TextField::new('answer3'),
 	        TextField::new('answer4'),
-	        BooleanField::new('visible')
+	        BooleanField::new('visible'),
+	        IntegerField::new('rightAnswer')
 	        ];
     }
     
