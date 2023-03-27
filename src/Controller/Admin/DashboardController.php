@@ -49,7 +49,6 @@ class DashboardController extends AbstractDashboardController
 			
 			yield MenuItem::section('Quizz');
 			yield MenuItem::linkToCrud('Question', 'fas fa-question', Question::class);
-			yield MenuItem::linkToCrud('Answer', 'fas fa-list', Answers::class);
 			yield MenuItem::linkToCrud('Ranking', 'fas fa-star', Ranking::class);
     }
 }
