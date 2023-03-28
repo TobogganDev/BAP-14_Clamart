@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for quest in question %}
+        {{ quest.title }}
+        {{ quest.answer1 }}
+    {% endfor %}
+{% endblock %}
