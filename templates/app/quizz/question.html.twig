@@ -4,13 +4,21 @@
 
     <div class="w-full h-[100vh] flex justify-center items-center flex-col gap-6">
         <h1 class="py-4 px-8 bg-gray-500">{{ question.title }}</h1>
-        <div class="progress-bar-container relative">
-            <div class="progress-bar absolute top-0 left-0"></div>
+        <div class="progress-bar-container relative w-full">
+            <div class="progress-bar absolute top-0 left-0 bg-black h-[2px]"></div>
         </div>
-        <div class="grid grid-cols-2 gap-4">
-            {% for answer in question.answers %}
-                <p class="py-10 px-20 bg-gray-500">{{ answer }}</p>
+
+        <div class="grid grid-cols-2 gap-4 select-none" id="answers">
+            {% for key,answer in question.answers %}
+                    <label class="py-10 px-20 bg-gray-500">
+                        <input type="radio" name="answer" id="{{ key }}" value="{{ key }}">
+                        <span>{{ answer }}</span>
+                    </label>
             {% endfor %}
+        </div>
+
+        <div class="solutions hidden">
+            <p>solutions</p>
         </div>
 
         {% if nextQuestion is not null %}
@@ -19,5 +27,16 @@
             <a href="">Valider</a>
         {% endif %}
     </div>
-
+    <script>
+        const rightAnswer = {{ question.rightAnswer }};
+        console.log(rightAnswer);
+        const radioRight = document.getElementById(rightAnswer);
+        console.log(radioRight);
+        radioRight.addEventListener('click', () => {
+            const answers = document.getElementById('answers');
+            answers.classList.add('hidden');
+            const solutions = document.querySelector('.solutions');
+            solutions.classList.remove('hidden');
+        })
+    </script>
 {% endblock %}

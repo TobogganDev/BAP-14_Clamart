@@ -21,14 +21,6 @@ class Question
 			'notInRangeMessage' => 'La valeur doit être entre {{ min }} et {{ max }}.',
 		]));
 	}
-	public static function test(ClassMetadata $metadata)
-	{
-		$metadata->addPropertyConstraint('answers', new Assert\Range([
-			'min' => 1,
-			'max' => 4,
-			'notInRangeMessage' => 'La valeur doit être entre {{ min }} et {{ max }}.',
-		]));
-	}
 	
 	
     #[ORM\Id]
