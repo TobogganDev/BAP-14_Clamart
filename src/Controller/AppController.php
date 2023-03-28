@@ -16,4 +16,12 @@ class AppController extends AbstractController
             'ranks' => $rankingRepository->findAll(),
         ]);
     }
+	
+	
+	
+		#[Route('/quizz', name: 'app_quizz')]
+		public function quizz(): Response
+		{
+			return $this->render('app/quizz/quizz.html.twig');
+		}
 }
