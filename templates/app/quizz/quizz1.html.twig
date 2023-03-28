@@ -2,8 +2,14 @@
 
 {% block body %}
 
-    {% for quest in question %}
-        {{ quest.title }}
-        {{ quest.answer1 }}
-    {% endfor %}
+    <div>
+
+    </div>
+    <h1>{{ question.title }}</h1>
+    <p>{{ question.answer1 }}</p>
+    {% if nextQuestion is not null %}
+        <a href="{{ path('app_question', {id: nextQuestion.id}) }}">Question suivante</a>
+    {% else%}
+        <a href="">Valider</a>
+    {% endif %}
 {% endblock %}
