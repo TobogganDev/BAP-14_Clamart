@@ -39,7 +39,7 @@ class AppController extends AbstractController
 				$nextQuestion = $questionRepository->findNextQuestion($nextQuestion);
 			}
 			
-			return $this->render('app/quizz/quizz1.html.twig', [
+			return $this->render('app/quizz/question.html.twig', [
 				'question' => $question,
 				'nextQuestion' => $nextQuestion,
 			]);
