@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Question;
 use App\Repository\QuestionRepository;
 use App\Repository\RankingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,16 +22,26 @@ class AppController extends AbstractController
 	
 	
 		#[Route('/quizz', name: 'app_quizz')]
-		public function quizz(): Response
+		public function quizz(QuestionRepository $questionRepository): Response
 		{
-			return $this->render('app/quizz/quizz.html.twig');
+			$visibleQuestion = $questionRepository->findFirstVisibleQuestion();
+			return $this->render('app/quizz/quizz.html.twig', [
+				'question' => $visibleQuestion,
+			]);
 		}
 		
-		#[Route('/quizz/1', name: 'app_quizz_1')]
-		public function quizz1(QuestionRepository $questionRepository): Response
+		#[Route('/quizz/{id}', name: 'app_question')]
+		public function question(Question $question, QuestionRepository $questionRepository): Response
 		{
+			$nextQuestion = $questionRepository->findNextQuestion($question);
+			
+			while ($nextQuestion != null && $nextQuestion->isVisible() == false) {
+				$nextQuestion = $questionRepository->findNextQuestion($nextQuestion);
+			}
+			
 			return $this->render('app/quizz/quizz1.html.twig', [
-				'question' => $questionRepository->findOneByVisible(1)
+				'question' => $question,
+				'nextQuestion' => $nextQuestion,
 			]);
 		}
 }

@@ -11,6 +11,11 @@
         <p>{{ app.user.name }}</p>
     {% endif %}
 
-    <a href="{{ path('app_quizz_1') }}">Start</a>
+
+    {% if question is not null %}
+        <a href="{{ path('app_question', {'id': question.id}) }}">Lancer le quiz</a>
+    {% else %}
+        <p>Aucune question visible n'a été trouvée.</p>
+    {% endif %}
 </div>
 {% endblock %}
