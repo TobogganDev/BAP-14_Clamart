@@ -2,14 +2,22 @@
 
 {% block body %}
 
-    <div>
+    <div class="w-full h-[100vh] flex justify-center items-center flex-col gap-6">
+        <h1 class="py-4 px-8 bg-gray-500">{{ question.title }}</h1>
+        <div class="progress-bar-container relative">
+            <div class="progress-bar absolute top-0 left-0"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            {% for answer in question.answers %}
+                <p class="py-10 px-20 bg-gray-500">{{ answer }}</p>
+            {% endfor %}
+        </div>
 
+        {% if nextQuestion is not null %}
+            <a href="{{ path('app_question', {id: nextQuestion.id}) }}">Question suivante</a>
+        {% else%}
+            <a href="">Valider</a>
+        {% endif %}
     </div>
-    <h1>{{ question.title }}</h1>
-    <p>{{ question.answer1 }}</p>
-    {% if nextQuestion is not null %}
-        <a href="{{ path('app_question', {id: nextQuestion.id}) }}">Question suivante</a>
-    {% else%}
-        <a href="">Valider</a>
-    {% endif %}
+
 {% endblock %}

@@ -4,11 +4,14 @@ namespace App\Controller\Admin;
 
 use App\Entity\Question;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class QuestionCrudController extends AbstractCrudController
 {
@@ -23,12 +26,9 @@ class QuestionCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('title'),
-	        TextField::new('answer1'),
-	        TextField::new('answer2'),
-	        TextField::new('answer3'),
-	        TextField::new('answer4'),
 	        BooleanField::new('visible'),
-	        IntegerField::new('rightAnswer')
+	        IntegerField::new('rightAnswer'),
+	        ArrayField::new('answers')
 	        ];
     }
     
