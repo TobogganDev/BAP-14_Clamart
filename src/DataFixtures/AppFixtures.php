@@ -41,12 +41,9 @@ class AppFixtures extends Fixture
 				for ($i = 0; $i < 10; $i++) {
 					$question = new Question();
 					$question->setTitle('Question ' . $i);
-					$question->setAnswer1('Answer 1');
-					$question->setAnswer2('Answer 2');
-					$question->setAnswer3('Answer 3');
-					$question->setAnswer4('Answer 4');
 					$question->setRightAnswer(1);
 					$question->setVisible(true);
+					$question->setAnswers(['test1', 'test2', 'test3', 'test4']);
 					$manager->persist($question);
 				}
 				
