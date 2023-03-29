@@ -71,4 +71,6 @@ class QuestionRepository extends ServiceEntityRepository
 	{
 		return $this->findOneBy(['visible' => true], ['id' => 'ASC']);
 	}
+
+
 }
