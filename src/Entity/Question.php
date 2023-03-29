@@ -23,6 +23,8 @@ class Question
 	}
 	
 	
+	
+	
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -38,7 +40,13 @@ class Question
 
     #[ORM\Column(nullable: true)]
     private ?int $rightAnswer = null;
-
+	
+	/**
+	 * @Assert\Count(
+	 *      max = 4,
+	 *      maxMessage = "You can only have a maximum of 4 answers"
+	 * )
+	 */
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private array $answers = [];
 		
