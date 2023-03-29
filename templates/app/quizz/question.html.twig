@@ -8,6 +8,10 @@
             <div class="progress-bar absolute top-0 left-0 bg-black h-[2px]"></div>
         </div>
 
+        <div>
+            <p>Score : {{ user_score }}</p>
+        </div>
+
         <div class="grid grid-cols-2 gap-4 select-none" id="answers">
             {% for key,answer in question.answers %}
                     <label class="py-10 px-20 bg-gray-500">
@@ -35,9 +39,8 @@
     </div>
     <script>
         const rightAnswer = {{ question.rightAnswer }};
-        const score = {{ ranks.score }};
-        console.log(score)
         console.log(rightAnswer);
+        console.log({{ user_score }})
         const radioRight = document.getElementById(rightAnswer);
         console.log(radioRight);
         radioRight.addEventListener('click', () => {
