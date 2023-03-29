@@ -14,40 +14,50 @@
 
         <div class="grid grid-cols-2 gap-4 select-none" id="answers">
             {% for key,answer in question.answers %}
-                    <label class="py-10 px-20 bg-gray-500">
-                        <input type="radio" name="answer" id="{{ key }}" value="{{ key }}">
-                        <span>{{ answer }}</span>
-                    </label>
+                <label for="{{ key }}" class="py-10 px-20 bg-gray-500">
+                    <input type="radio" name="answer" id="{{ key }}" value="{{ key }}">
+                    <span>{{ answer }}</span>
+                </label>
             {% endfor %}
         </div>
 
-        <div class="solutions hidden">
-            <p>solutions</p>
-        </div>
-
         {% if nextQuestion is not null %}
-            <a href="{{ path('app_question', {id: nextQuestion.id}) }}">Question suivante</a>
+            <button type="button" id="submit-answer-button">Question suivante</button>
         {% else %}
             <form method="post" action="{{ path('app_submit_ranking') }}">
                 <input type="hidden" name="name" value="{{ app.user.name }}">
-                <input type="hidden" name="score" value="{{ user_score }}"> <!-- Remplacez 'user_score' par la variable contenant le score actuel de l'utilisateur -->
+                <input type="hidden" name="score" value="{{ user_score }}">
                 <button type="submit">Valider</button>
             </form>
         {% endif %}
-
-
     </div>
+
     <script>
-        const rightAnswer = {{ question.rightAnswer }};
-        console.log(rightAnswer);
-        console.log({{ user_score }})
-        const radioRight = document.getElementById(rightAnswer);
-        console.log(radioRight);
-        radioRight.addEventListener('click', () => {
-            const answers = document.getElementById('answers');
-            answers.classList.add('hidden');
-            const solutions = document.querySelector('.solutions');
-            solutions.classList.remove('hidden');
-        })
+        const submitAnswerButton = document.getElementById('submit-answer-button');
+        const answerRadios = document.querySelectorAll('input[type="radio"][name="answer"]');
+
+        submitAnswerButton.addEventListener('click', () => {
+            let selectedAnswer = null;
+            answerRadios.forEach((radio) => {
+                if (radio.checked) {
+                    selectedAnswer = radio.value;
+                }
+            });
+
+            if (selectedAnswer !== null) {
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = '{{ path('app_question', {id: question.id}) }}';
+
+                const answerInput = document.createElement('input');
+                answerInput.type = 'hidden';
+                answerInput.name = 'answer';
+                answerInput.value = selectedAnswer;
+                form.appendChild(answerInput);
+
+                form.submit();
+            }
+        });
     </script>
+
 {% endblock %}

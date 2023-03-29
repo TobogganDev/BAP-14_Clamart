@@ -52,23 +52,12 @@ class AppController extends AbstractController
         $em->persist($ranking);
         $em->flush();
 
-        $firstVisibleQuestion = $questionRepository->findFirstVisibleQuestion();
-        if ($firstVisibleQuestion !== null) {
-            return $this->redirectToRoute('app_question', ['id' => $firstVisibleQuestion->getId()]);
-        } else {
-            // Gérer le cas où aucune question visible n'est trouvée.
-            // Vous pouvez rediriger l'utilisateur vers une autre page ou afficher un message d'erreur.
-            return $this->redirectToRoute('app_index');
-        }
+        return $this->render('app/quizz/final.html.twig');
     }
 
     #[Route('/quizz', name: 'app_quizz')]
     public function quizz(QuestionRepository $questionRepository, Request $request): Response
     {
-        // Initialisez la session et définissez le score sur 0
-        $session = $request->getSession();
-        $session->set('score', 0);
-
         $visibleQuestion = $questionRepository->findFirstVisibleQuestion();
 
         return $this->render('app/quizz/quizz.html.twig', [
@@ -77,8 +66,8 @@ class AppController extends AbstractController
     }
 
 
-		#[Route('/quizz/{id}', name: 'app_question')]
-		public function question(Question $question, QuestionRepository $questionRepository, RankingRepository $rankingRepository, Request $request): Response
+		#[Route('/quizz/{id}', name: 'app_question', methods: ['POST'])]
+		public function question(Question $question, QuestionRepository $questionRepository): Response
 		{
 			$nextQuestion = $questionRepository->findNextQuestion($question);
 			
@@ -86,34 +75,9 @@ class AppController extends AbstractController
 				$nextQuestion = $questionRepository->findNextQuestion($nextQuestion);
 			}
 
-            $submittedAnswer = $request->get('answer');
-
-            var_dump($submittedAnswer);
-            $rightAnswerIndex = $question->getRightAnswer();
-            $session = $request->getSession();
-            $currentScore = $session->get('score', 0);
-            var_dump($currentScore);
-            if ($submittedAnswer && $question->getAnswers()[$rightAnswerIndex] === $submittedAnswer) {
-
-                $session = $request->getSession();
-                $currentScore = $session->get('score', 0);
-                var_dump($currentScore);
-                $session->set('score', $currentScore + 1); // Maj du score
-            } else {
-                print_r('Mauvaise réponse');
-            }
-
-
-
-            $session = $request->getSession();
-            $userScore = $session->get('score', 0);
-            // Vérifiez si la réponse soumise est correcte
-			
 			return $this->render('app/quizz/question.html.twig', [
 				'question' => $question,
-				'nextQuestion' => $nextQuestion,
-                'ranks' => $rankingRepository->findAll(),
-                'user_score' => $userScore,
+				'nextQuestion' => $nextQuestion
 			]);
 		}
 }
