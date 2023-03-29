@@ -23,9 +23,15 @@
 
         {% if nextQuestion is not null %}
             <a href="{{ path('app_question', {id: nextQuestion.id}) }}">Question suivante</a>
-        {% else%}
-            <a href="">Valider</a>
+        {% else %}
+            <form method="post" action="{{ path('app_submit_ranking') }}">
+                <input type="hidden" name="name" value="{{ app.user.name }}">
+                <input type="hidden" name="score" value="{{ user_score }}"> <!-- Remplacez 'user_score' par la variable contenant le score actuel de l'utilisateur -->
+                <button type="submit">Valider</button>
+            </form>
         {% endif %}
+
+
     </div>
     <script>
         const rightAnswer = {{ question.rightAnswer }};
