@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\FlashCards;
 use App\Entity\Question;
 use App\Entity\Ranking;
 use App\Entity\User;
@@ -57,5 +58,15 @@ class AppFixtures extends Fixture
 				}
 				
 				$manager->flush();
+	
+	
+	    for ($i = 0; $i < 10; $i++) {
+		    $flashCard = new FlashCards();
+		    $flashCard->setTitle('Quelle proportion des flux de données sur Internet est représentée par le streaming vidéo ?');
+		    $flashCard->setDescription('Le streaming vidéo représente 80% des flux de données sur Internet.');
+		    $manager->persist($flashCard);
+	    }
+			
+			$manager->flush();
     }
 }
