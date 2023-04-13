@@ -8,9 +8,7 @@
             <div class="progress-bar absolute top-0 left-0 bg-black h-[2px]"></div>
         </div>
 
-        <div>
-            <p>Score : {{ user_score }}</p>
-        </div>
+        <h2>{{  }}</h2>
 
         <div class="grid grid-cols-2 gap-4 select-none" id="answers">
             {% for key,answer in question.answers %}
@@ -20,44 +18,24 @@
                 </label>
             {% endfor %}
         </div>
-
         {% if nextQuestion is not null %}
-            <button type="button" id="submit-answer-button">Question suivante</button>
-        {% else %}
-            <form method="post" action="{{ path('app_submit_ranking') }}">
-                <input type="hidden" name="name" value="{{ app.user.name }}">
-                <input type="hidden" name="score" value="{{ user_score }}">
-                <button type="submit">Valider</button>
-            </form>
+            <a href="{{ path('app_question', {id: nextQuestion.id}) }}" onclick="verif()">Question suivante</a>
+        {% else%}
+            <a href="">Valider</a>
         {% endif %}
     </div>
 
     <script>
-        const submitAnswerButton = document.getElementById('submit-answer-button');
-        const answerRadios = document.querySelectorAll('input[type="radio"][name="answer"]');
+        var score = sessionStorage.getItem("score") ? parseInt(sessionStorage.getItem("score")) : 0;
 
-        submitAnswerButton.addEventListener('click', () => {
-            let selectedAnswer = null;
-            answerRadios.forEach((radio) => {
-                if (radio.checked) {
-                    selectedAnswer = radio.value;
-                }
-            });
-
-            if (selectedAnswer !== null) {
-                const form = document.createElement('form');
-                form.method = 'post';
-                form.action = '{{ path('app_question', {id: question.id}) }}';
-
-                const answerInput = document.createElement('input');
-                answerInput.type = 'hidden';
-                answerInput.name = 'answer';
-                answerInput.value = selectedAnswer;
-                form.appendChild(answerInput);
-
-                form.submit();
+        function verif(){
+            var answer = document.querySelector('input[name="answer"]:checked').value;
+            var rightAnswer = {{ question.rightAnswer }};
+            if(parseInt(answer) === parseInt(rightAnswer)){
+                score++;
             }
-        });
+            sessionStorage.setItem("score", score.toString());
+        }
     </script>
 
 {% endblock %}
