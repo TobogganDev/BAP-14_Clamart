@@ -1,47 +1,24 @@
 <header class="w-full flex justify-between py-4 px-8 fixed top-0 left-0">
-    <section>
-        <div class="menu">
-            <div class="m-acceuil">
-                <h2>
-                   Acceuil
-                </h2>
-            </div>
-            <div class="m-question">
-                <h2>
-                    Questionnaire
-                </h2>
-            </div>
-            <div class="m-logo">
-                <h2>
-                    Logo
-                </h2>
-            </div>
-            <div class="m-solution">
-                <h2>
-                    Solutions
-                </h2>
-            </div>
-            <div class="m-login">
-                <h2>
-                    Login
-                </h2>
-            </div>
-        </div>
+    <section class="content-center">
+        <nav class="flex center ml-[49%]">
+            <ul class="flex gap-4">
+                <li class="m-acceuil p-[10px] bg-red-700 ml-[15px]"><a href="{{ path('app_index') }}">Accueil</a></li>
+                <li class="m-question ml-[15px]"><a href="">Questionnaire</a></li>
+                <li class="m-logo ml-[15px]"><a href="">Logo</a></li>
+                <li class="m-solution ml-[15px]"><a href="">Solutions</a></li>
+                <li class="m-login ml-[15px]"><a href="">Login</a></li>
+                {% if app.user %}
+                    <li><a href="{{ path('app_logout') }}">logout</a></li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
+
+                {% endif %}
+
+            </ul>
+        </nav>
     </section>
     <div>
         <img src="" alt="">
     </div>
-    <nav>
-        <ul class="flex gap-4">
-            <li><a href="{{ path('app_index') }}">Accueil</a></li>
-            <li><a href="">Menu</a></li>
-            <li><a href="">Menu</a></li>
-            {% if app.user %}
-                <li><a href="{{ path('app_logout') }}">logout</a></li>
-                {% else %}
-                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
 
-            {% endif %}
-        </ul>
-    </nav>
 </header>
