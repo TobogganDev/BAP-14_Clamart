@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Answers;
+use App\Entity\FlashCards;
 use App\Entity\Question;
 use App\Entity\Ranking;
 use App\Entity\User;
@@ -49,6 +50,9 @@ class DashboardController extends AbstractDashboardController
 			
 			yield MenuItem::section('Quizz');
 			yield MenuItem::linkToCrud('Question', 'fas fa-question', Question::class);
-			yield MenuItem::linkToCrud('Ranking', 'fas fa-star', Ranking::class);
+			yield MenuItem::linkToCrud('Ranking', 'fas fa-list', Ranking::class);
+			
+			yield MenuItem::section('Flash Cards');
+			yield MenuItem::linkToCrud('Flash Cards', 'fas fa-lightbulb', FlashCards::class);
     }
 }
