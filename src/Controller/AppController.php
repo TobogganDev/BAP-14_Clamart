@@ -66,7 +66,7 @@ class AppController extends AbstractController
     }
 
 
-		#[Route('/quizz/{id}', name: 'app_question', methods: ['POST'])]
+		#[Route('/quizz/{id}', name: 'app_question')]
 		public function question(Question $question, QuestionRepository $questionRepository): Response
 		{
 			$nextQuestion = $questionRepository->findNextQuestion($question);
