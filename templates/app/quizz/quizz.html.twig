@@ -1,22 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="flex h-[100vh] justify-center items-center flex-col">
-    <div>
-        <img src="" alt="" class="w-[50px] h-[50px] bg-gray-500 rounded-full">
+    <div class="flex h-[100vh] justify-center items-center flex-col">
+        <div>
+            <img src="" alt="" class="w-[50px] h-[50px] bg-gray-500 rounded-full">
+        </div>
+        {% if (app.user == '') %}
+            <input type="text" id="name" name="name" id="name" placeholder="Nom">
+        {% else %}
+            <p>{{ app.user.name }}</p>
+        {% endif %}
+
+        {% if question is not null %}
+            <a href="{{ path('app_question', {'id': question.id}) }}">Lancer le quiz</a>
+        {% else %}
+            <p>Aucune question visible n'a été trouvée.</p>
+        {% endif %}
     </div>
-    {% if (app.user == '') %}
-        <input type="text" name="name" id="name" placeholder="Nom">
-    {% else %}
-        <p>{{ app.user.name }}</p>
-    {% endif %}
 
+    <script>
+        const nameInput = document.getElementById('name');
 
-    {% if question is not null %}
-        <a href="{{ path('app_question', {'id': question.id}) }}">Lancer le quiz</a>
-    {% else %}
-        <p>Aucune question visible n'a été trouvée.</p>
-    {% endif %}
-
-</div>
+        if (nameInput) {
+            nameInput.addEventListener('change', function () {
+                const name = nameInput.value;
+                sessionStorage.setItem('name', name);
+            });
+        }
+    </script>
 {% endblock %}

@@ -12,7 +12,7 @@
                     <h2><a href="">Bonne pratiques</a></h2>
                 </div>
                 <div>
-                    <h2><a href="{{ path('app_quizz') }}">Commencer le quizz</a></h2>
+                    <h2><a href="{{ path('app_quizz') }}" id="begin">Commencer le quizz</a></h2>
                 </div>
             </div>
             <div>
@@ -38,5 +38,14 @@
         </div>
 
     </div>
+
+
+    <script>
+        const begin = document.getElementById('begin');
+        begin.addEventListener('click', () => {
+            sessionStorage.setItem('score', 0);
+        })
+
+    </script>
 
 {% endblock %}

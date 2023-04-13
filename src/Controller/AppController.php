@@ -70,7 +70,7 @@ class AppController extends AbstractController
 		public function question(Question $question, QuestionRepository $questionRepository): Response
 		{
 			$nextQuestion = $questionRepository->findNextQuestion($question);
-			
+
 			while ($nextQuestion != null && $nextQuestion->isVisible() == false) {
 				$nextQuestion = $questionRepository->findNextQuestion($nextQuestion);
 			}
