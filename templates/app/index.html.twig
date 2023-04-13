@@ -1,13 +1,42 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
 
-</body>
-</html>
+{% block body %}
+
+    <div class="w-full h-[100vh] flex justify-center items-center">
+        <div class="flex gap-20">
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h2><a href="">Profile</a></h2>
+                </div>
+                <div>
+                    <h2><a href="">Bonne pratiques</a></h2>
+                </div>
+                <div>
+                    <h2><a href="{{ path('app_quizz') }}">Commencer le quizz</a></h2>
+                </div>
+            </div>
+            <div>
+                <h2>Classement</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in ranks %}
+                            <tr>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.score }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

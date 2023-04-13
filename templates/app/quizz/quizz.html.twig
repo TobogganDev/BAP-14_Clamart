@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="flex h-[100vh] justify-center items-center flex-col">
+    <div>
+        <img src="" alt="" class="w-[50px] h-[50px] bg-gray-500 rounded-full">
+    </div>
+    {% if (app.user == '') %}
+        <input type="text" name="name" id="name" placeholder="Nom">
+    {% else %}
+        <p>{{ app.user.name }}</p>
+    {% endif %}
+
+
+    {% if question is not null %}
+        <a href="{{ path('app_question', {'id': question.id}) }}">Lancer le quiz</a>
+    {% else %}
+        <p>Aucune question visible n'a été trouvée.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

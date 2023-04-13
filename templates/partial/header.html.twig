@@ -1,4 +1,4 @@
-<header>
+<header class="w-full flex justify-between py-4 px-8 fixed top-0 left-0">
     <section>
         <div class="menu">
             <div class="m-acceuil">
@@ -28,4 +28,20 @@
             </div>
         </div>
     </section>
+    <div>
+        <img src="" alt="">
+    </div>
+    <nav>
+        <ul class="flex gap-4">
+            <li><a href="{{ path('app_index') }}">Accueil</a></li>
+            <li><a href="">Menu</a></li>
+            <li><a href="">Menu</a></li>
+            {% if app.user %}
+                <li><a href="{{ path('app_logout') }}">logout</a></li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
 </header>

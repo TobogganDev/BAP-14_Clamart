@@ -54,13 +54,23 @@ class QuestionRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Question
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+	public function findNextQuestion(Question $question)
+	{
+		return $this->createQueryBuilder('q')
+			->where('q.visible = :visible')
+			->andWhere('q.id > :id')
+			->setParameter('visible', true)
+			->setParameter('id', $question->getId())
+			->orderBy('q.id', 'ASC')
+			->setMaxResults(1)
+			->getQuery()
+			->getOneOrNullResult();
+	}
+	public function findFirstVisibleQuestion(): ?Question
+	{
+		return $this->findOneBy(['visible' => true], ['id' => 'ASC']);
+	}
+
+
 }

@@ -21,6 +21,10 @@ class Question
 			'notInRangeMessage' => 'La valeur doit être entre {{ min }} et {{ max }}.',
 		]));
 	}
+	
+	
+	
+	
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -29,28 +33,23 @@ class Question
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $answer1 = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $answer2 = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $answer3 = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $answer4 = null;
+    
 
     #[ORM\Column]
     private ?bool $visible = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $rightAnswer = null;
-
-    
-
-    
-
+	
+	/**
+	 * @Assert\Count(
+	 *      max = 4,
+	 *      maxMessage = "You can only have a maximum of 4 answers"
+	 * )
+	 */
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private array $answers = [];
+		
     public function getId(): ?int
     {
         return $this->id;
@@ -68,53 +67,6 @@ class Question
         return $this;
     }
 
-    public function getAnswer1(): ?string
-    {
-        return $this->answer1;
-    }
-
-    public function setAnswer1(?string $answer1): self
-    {
-        $this->answer1 = $answer1;
-
-        return $this;
-    }
-
-    public function getAnswer2(): ?string
-    {
-        return $this->answer2;
-    }
-
-    public function setAnswer2(?string $answer2): self
-    {
-        $this->answer2 = $answer2;
-
-        return $this;
-    }
-
-    public function getAnswer3(): ?string
-    {
-        return $this->answer3;
-    }
-
-    public function setAnswer3(?string $answer3): self
-    {
-        $this->answer3 = $answer3;
-
-        return $this;
-    }
-
-    public function getAnswer4(): ?string
-    {
-        return $this->answer4;
-    }
-
-    public function setAnswer4(?string $answer4): self
-    {
-        $this->answer4 = $answer4;
-
-        return $this;
-    }
 
     public function isVisible(): ?bool
     {
@@ -139,6 +91,22 @@ class Question
 
         return $this;
     }
+
+    public function getAnswers(): array
+    {
+        return $this->answers;
+    }
+
+    public function setAnswers(?array $answers): self
+    {
+        $this->answers = $answers;
+
+        return $this;
+    }
+
+    
+
+    
 
     
 }

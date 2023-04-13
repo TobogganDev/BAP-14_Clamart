@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="w-full h-[100vh] flex justify-center items-center flex-col gap-6">
+        <h1 class="py-4 px-8 bg-gray-500">{{ question.title }}</h1>
+        <div class="progress-bar-container relative w-full">
+            <div class="progress-bar absolute top-0 left-0 bg-black h-[2px]"></div>
+        </div>
+
+        <h2>{{  }}</h2>
+
+        <div class="grid grid-cols-2 gap-4 select-none" id="answers">
+            {% for key,answer in question.answers %}
+                <label for="{{ key }}" class="py-10 px-20 bg-gray-500">
+                    <input type="radio" name="answer" id="{{ key }}" value="{{ key }}">
+                    <span>{{ answer }}</span>
+                </label>
+            {% endfor %}
+        </div>
+        {% if nextQuestion is not null %}
+            <a href="{{ path('app_question', {id: nextQuestion.id}) }}" onclick="verif()">Question suivante</a>
+        {% else%}
+            <a href="">Valider</a>
+        {% endif %}
+    </div>
+
+    <script>
+        var score = sessionStorage.getItem("score") ? parseInt(sessionStorage.getItem("score")) : 0;
+
+        function verif(){
+            var answer = document.querySelector('input[name="answer"]:checked').value;
+            var rightAnswer = {{ question.rightAnswer }};
+            if(parseInt(answer) === parseInt(rightAnswer)){
+                score++;
+            }
+            sessionStorage.setItem("score", score.toString());
+        }
+    </script>
+
+{% endblock %}
