@@ -30,8 +30,8 @@
 
     <script>
         function submitScore() {
-            const username = sessionStorage.getItem('name') || 'Anonymous'; // Récupérez le nom d'utilisateur ou utilisez 'Anonymous' par défaut
-            document.getElementById('name').value = username;
+             // Récupérez le nom d'utilisateur ou utilisez 'Anonyme' par défaut
+            document.getElementById('name').value = sessionStorage.getItem('name') || 'Anonyme';
             document.getElementById('scoreInput').value = score;
             document.getElementById('scoreForm').submit();
         }
