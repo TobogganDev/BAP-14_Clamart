@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <div class="w-full h-[100vh] flex justify-center items-center">
+    {#<div class="w-full h-[100vh] flex justify-center items-center">
         <div class="flex gap-20">
             <div class="flex flex-col justify-between">
                 <div>
@@ -38,5 +38,26 @@
         </div>
 
     </div>
+#}
 
+    <section class="w-full h-[100vh] flex justify-center items-center">
+
+        <div class=" ml-[160px] mt-[300px] flex">
+            <div>
+                <h1 class="text-[64px] " >
+                    Questionnnaire
+                </h1>
+                <p class="pt-[30px] max-w-[630px]">
+                    Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, .
+                </p>
+
+                <button class="rounded-full h-[60px] w-[240px] bg-blue-300 ml-[350px] mt-[50px]">
+                    Démarer le quizz
+                </button>
+            </div>
+            <img class="ml-[295px]" src={{ asset('img/home.png') }}>
+        </div>
+
+
+    </section>
 {% endblock %}
