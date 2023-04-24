@@ -37,8 +37,13 @@
         }
 
         let score = sessionStorage.getItem("score") ? parseInt(sessionStorage.getItem("score")) : 0;
+        let answered = false;
 
         function verif(){
+            if (answered) {
+                return; // Si la question a déjà été répondue, sortez de la fonction.
+            }
+
             const answer = document.querySelector('input[name="answer"]:checked').value;
             let rightAnswer = {{ question.rightAnswer }};
             if(parseInt(answer) === parseInt(rightAnswer)){
@@ -46,9 +51,9 @@
             }
             sessionStorage.setItem("score", score.toString());
 
-
-
+            answered = true; // Marquez la question comme ayant été répondue.
         }
+    </script>
     </script>
 
 {% endblock %}
