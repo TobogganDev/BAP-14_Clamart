@@ -1,21 +1,23 @@
 <header class="w-full flex justify-between py-4 px-8 fixed top-0 left-0">
     <section class="content-center">
-        <nav class="flex center ml-[49%]">
+        <nav class="flex center">
+
             <ul class="flex gap-4">
-                <li class="m-acceuil p-[10px] bg-red-700 ml-[15px]"><a href="{{ path('app_index') }}">Accueil</a></li>
-                <li class="m-question ml-[15px]"><a href="">Questionnaire</a></li>
-                <li class="m-logo ml-[15px]"><a href="">Logo</a></li>
-                <li class="m-solution ml-[15px]"><a href="">Solutions</a></li>
-                <li class="m-login ml-[15px]"><a href="">Login</a></li>
+                <img class="w-[250px] mr-[175px]" src={{ asset('img/logo.png') }}>
+                <li class="m-acceuil p-[10px] bg-red-700 ml-[75px]"><a href="{{ path('app_index') }}">Accueil</a></li>
+                <li class="m-question ml-[75px]"><a href="">Questionnaire</a></li>
+                <li class="m-solution ml-[75px]"><a href="">Solutions</a></li>
+                <li class="m-login ml-[75px]"><a href="">Login</a></li>
                 {% if app.user %}
-                    <li><a href="{{ path('app_logout') }}">logout</a></li>
+                    <li><a class="m-login ml-[75px]" href="{{ path('app_logout') }}">logout</a></li>
                 {% else %}
-                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                    <li><a class="m-login ml-[75px]" href="{{ path('app_login') }}">Connexion</a></li>
 
                 {% endif %}
 
             </ul>
         </nav>
+        <hr  class="mt-[50px] w-[115%] border-[1.5px] border-black">
     </section>
     <div>
         <img src="" alt="">
