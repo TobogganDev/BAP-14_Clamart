@@ -40,9 +40,10 @@
     </div>
 #}
 
-    <section class="w-full h-[100vh] flex justify-center items-center">
+    {#
+    <section class="w-full 2xl:h-[100vh] h-[15vh] flex justify-center items-center">
 
-        <div class=" ml-[160px] mt-[300px] flex">
+        <div class="ml-[27px] 2xl:ml-[160px] mt-[43px] 2xl:mt-[300px] flex max-w-[336px] 2xl:max-w-[1575px]">
             <div>
                 <h1 class="text-[64px] " >
                     Questionnnaire
@@ -56,6 +57,28 @@
                 </button>
             </div>
             <img class="ml-[295px]" src={{ asset('img/home.png') }}>
+        </div>
+
+
+    </section>
+    #}
+
+    <section class=" flex justify-center items-center w-[336px] h-[122px] border-4 mt-[800px] ml-[27px]">
+
+        <div class="flex">
+            <div class="justify-center items-center">
+                <h1 class="collapse" >
+                    Questionnnaire
+                </h1>
+                <p class="text-[9px]">
+                    Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre
+                </p>
+
+                <button class="rounded-full h-[23px] w-[112px] bg-red-400  mt-[8px] text-[12px]">
+                    Démarer le quizz
+                </button>
+            </div>
+            <img class="w-[117px] h-[88px] mt-[17px]" src={{ asset('img/home.png') }}>
         </div>
 
 
