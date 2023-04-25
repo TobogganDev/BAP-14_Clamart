@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         'new-green': '#21A59F',
+        'new-red': '#E42353',
       },
       fontFamily:{
         nunito:" 'ninoto',sans-serif ",
