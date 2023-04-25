@@ -6,8 +6,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'new-green': '#21A59F',
+      },
       fontFamily:{
-        nunito:" 'ninoto',sans-serif "
+        nunito:" 'ninoto',sans-serif ",
       }
     },
   },
