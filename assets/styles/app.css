@@ -25,3 +25,19 @@ input{
 .solutions{
 	transition: all .6s ease;
 }
+
+.ranking{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.ranking img{
+	width: 70px;
+}
+
+.rank-wrapper{
+	overflow-y: auto;
+}
