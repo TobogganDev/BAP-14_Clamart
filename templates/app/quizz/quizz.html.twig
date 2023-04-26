@@ -1,22 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="flex h-[100vh] justify-center items-center flex-col">
+    <!--
+    <div class="flex h-[100vh] justify-center items-center flex-col gap-4">
         <div>
-            <img src="" alt="" class="w-[50px] h-[50px] bg-gray-500 rounded-full">
         </div>
         {% if (app.user == '') %}
-            <input type="text" id="name" name="name" id="name" placeholder="Nom">
+            <input type="text" id="name" name="name" id="name" placeholder="Nom" class="block w-50 rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
         {% else %}
             <p>{{ app.user.name }}</p>
         {% endif %}
 
         {% if question is not null %}
-            <a href="{{ path('app_question', {'id': question.id}) }}">Lancer le quiz</a>
+            <a href="{{ path('app_question', {'id': question.id}) }}" class="rounded-md bg-thisGreen px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-thisGreen focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Lancer le quiz</a>
         {% else %}
             <p>Aucune question visible n'a été trouvée.</p>
         {% endif %}
     </div>
+    -->
+    <section class="w-full h-[100vh] flex ">
+        <div class="w-1/2 flex align-center">
+            <img src="/img/earthLogo.svg" alt="earth illustration" class="w-4/5">
+        </div>
+        <div class="w-1/2 bg-thisGreen relative flex flex-col align-center items-center">
+            <div class="w-12 h-12 rounded bg-white rotate-45 absolute top-20 -left-8"></div>
+            <img src="/img/logoWhite.png" alt="logo Clamart">
+            <div>
+                {% if (app.user == '') %}
+                    <input type="text" id="name" name="name" id="name" placeholder="Pseudo" class="">
+                {% else %}
+                    <p>{{ app.user.name }}</p>
+                {% endif %}
+
+                {% if question is not null %}
+                    <a href="{{ path('app_question', {'id': question.id}) }}" class="">Lancer le quiz</a>
+                {% else %}
+                    <p>Aucune question visible n'a été trouvée.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
 
     <script>
         const nameInput = document.getElementById('name');

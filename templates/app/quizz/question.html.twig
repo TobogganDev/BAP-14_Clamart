@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<!--
     <div class="w-full h-[100vh] flex justify-center items-center flex-col gap-6">
         <h1 class="py-4 px-8 bg-gray-500">{{ question.title }}</h1>
         <div class="progress-bar-container relative w-full">
@@ -27,7 +27,51 @@
             <a id="validation" href="#" onclick="submitScore()">Valider</a>
         {% endif %}
     </div>
+-->
+    <section class="flex w-full h-[100vh]">
+        <div class="lg:w-1/2 h-[100vh] background-primary px-16 py-10">
+            <div class="flex flex-col gap-12">
+                <img src="/img/logo.png" alt="logo" class="w-60">
+                <a href="{{ path('app_index') }}" class="w-11 hover:-translate-y-1 transition-transform">
+                    <img src="/img/arrowBackRed.png" alt="return button" class="w-11">
+                </a>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <h2 class="font-bold text-2xl text-lightPink">Question {{ question.id }} sur 20</h2>
+                <hr class="w-32 bg-lightPink mt-2">
+                <img src="/img/homeDraw.png" alt="illustration" class="w-2/3 my-12">
+                <p class="max-w-lg font-black text-xl text-center">{{ question.title }}</p>
+            </div>
 
+        </div>
+        <div class="lg:w-1/2 h-[100vh] bg-thisGreen text-white relative">
+            <div class="w-12 h-12 rounded bg-white rotate-45 absolute top-20 -left-8"></div>
+            <h2 class="text-center text-2xl font-black mt-[85px]">Choisissez votre réponse</h2>
+            <hr class="w-52 bg mt-4 mx-auto my-0">
+            <div id="answers" class="flex flex-col gap-6 my-24 mx-16">
+                {% for key,answer in question.answers %}
+                    <label for="{{ key }}" class="group flex items-center h-24 px-10 rounded-lg gap-2 cursor-pointer focus-within:bg-white focus-within:text-lightPink transition-all">
+                        <div class="w-12 max-h-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0px_4px_4px_rgba(0,0,0,0.25)] text-lightPink group-focus-within:bg-lightPink group-focus-within:text-white transition-all">
+                            <p class="font-black text-lg">{{ index[key] }}</p>
+                        </div>
+                        <input class="-translate-x-16 -z-10" type="radio" name="answer" id="{{ key }}" value="{{ key }}">
+                        <span class="font-bold text-lg">{{ answer }} </span>
+                    </label>
+                {% endfor %}
+            </div>
+            <div class="flex justify-center items-center">
+                {% if nextQuestion is not null %}
+                    <a href="{{ path('app_question', {id: nextQuestion.id}) }}" onclick="verif()" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Question suivante</a>
+                {% else%}
+                    <form id="scoreForm" method="post" action="{{ path('app_submit_ranking') }}" style="display: none;">
+                        <input type="hidden" name="score" id="scoreInput">
+                        <input type="hidden" name="name" id="name">
+                    </form>
+                    <a id="validation" href="#" onclick="submitScore()">Valider</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
     <script>
         function submitScore() {
              // Récupérez le nom d'utilisateur ou utilisez 'Anonyme' par défaut

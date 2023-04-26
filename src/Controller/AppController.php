@@ -78,7 +78,8 @@ class AppController extends AbstractController
 
 			return $this->render('app/quizz/question.html.twig', [
 				'question' => $question,
-				'nextQuestion' => $nextQuestion
+				'nextQuestion' => $nextQuestion,
+                'index' => ['A', 'B', 'C', 'D']
 			]);
 		}
 		
