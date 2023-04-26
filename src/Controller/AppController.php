@@ -90,4 +90,12 @@ class AppController extends AbstractController
 				'cards' => $cardsRepository->findAll(),
 			]);
 		}
+		
+		#[Route('/rank', name: 'app_rank')]
+		public function rank(RankingRepository $rankingRepository): Response
+		{
+			return $this->render('app/rank.html.twig', [
+				'ranks' => $rankingRepository->findAll(),
+			]);
+		}
 }
