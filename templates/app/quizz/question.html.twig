@@ -1,33 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!--
-    <div class="w-full h-[100vh] flex justify-center items-center flex-col gap-6">
-        <h1 class="py-4 px-8 bg-gray-500">{{ question.title }}</h1>
-        <div class="progress-bar-container relative w-full">
-            <div class="progress-bar absolute top-0 left-0 bg-black h-[2px]"></div>
-        </div>
-
-
-        <div class="grid grid-cols-2 gap-4 select-none" id="answers">
-            {% for key,answer in question.answers %}
-                <label for="{{ key }}" class="py-10 px-20 bg-gray-500">
-                    <input type="radio" name="answer" id="{{ key }}" value="{{ key }}">
-                    <span>{{ answer }}</span>
-                </label>
-            {% endfor %}
-        </div>
-        {% if nextQuestion is not null %}
-            <a href="{{ path('app_question', {id: nextQuestion.id}) }}" onclick="verif()">Question suivante</a>
-        {% else%}
-            <form id="scoreForm" method="post" action="{{ path('app_submit_ranking') }}" style="display: none;">
-                <input type="hidden" name="score" id="scoreInput">
-                <input type="hidden" name="name" id="name">
-            </form>
-            <a id="validation" href="#" onclick="submitScore()">Valider</a>
-        {% endif %}
-    </div>
--->
     <div id="explanationModal" class="fixed z-50 top-0 left-0 w-1/2 h-[100vh] bg-black bg-opacity-50 hidden flex justify-center items-center">
         <div class="bg-white rounded-lg p-8 w-4/5 md:w-1/2">
             <h3 class="text-xl font-bold mb-4">Explication</h3>
@@ -60,7 +33,7 @@
             <div class="w-12 h-12 rounded bg-white rotate-45 absolute top-20 -left-8"></div>
             <h2 class="text-center text-2xl font-black mt-[85px]">Choisissez votre réponse</h2>
             <hr class="w-52 bg mt-4 mx-auto my-0">
-            <div id="answers" class="flex flex-col gap-6 my-24 mx-16">
+            <div id="answers" class="flex flex-col gap-6 mx-16">
                 {% for key,answer in question.answers %}
                     <label for="{{ key }}" class="group flex items-center h-24 px-10 rounded-lg gap-2 cursor-pointer focus-within:bg-white focus-within:text-lightPink transition-all answer-label hover:border-[1px]" data-answer="{{ key }}" data-correct="{{ key == question.rightAnswer }}">
                         <div class="w-12 max-h-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0px_4px_4px_rgba(0,0,0,0.25)] text-lightPink group-focus-within:bg-lightPink group-focus-within:text-white transition-all">
