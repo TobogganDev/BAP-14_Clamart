@@ -6,6 +6,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'paint-blue': "url('/public/img/blue.png')",
+        'paint-red': "url('/public/img/red.png')",
+
+      },
       colors: {
         'new-green': '#21A59F',
         'new-red': '#E42353',
