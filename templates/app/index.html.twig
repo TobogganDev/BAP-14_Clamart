@@ -1,67 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    {#<div class="w-full h-[100vh] flex justify-center items-center">
-        <div class="flex gap-20">
-            <div class="flex flex-col justify-between">
-                <div>
-                    <h2><a href="">Profile</a></h2>
-                </div>
-                <div>
-                    <h2><a href="{{ path('app_cards') }}">Bonne pratiques</a></h2>
-                </div>
-                <div>
-                    <h2><a href="{{ path('app_quizz') }}" id="begin">Commencer le quizz</a></h2>
-                </div>
-            </div>
-            <div>
-                <h2>Classement</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in ranks %}
-                            <tr>
-                                <td>{{ user.name }}</td>
-                                <td>{{ user.score }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-
-                </table>
-            </div>
+    <section class="w-11/12 flex items-center mx-auto my-14  justify-between">
+        <div class="justify-center items-center w-2/5">
+            <h1 class="font-bold text-6xl" >Questionnnaire</h1>
+            <hr class="w-full bg-black">
+            <p class="">
+                Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, .
+            </p>
+            <a href="{{ path('app_quizz') }}" class="py-4 bg-thisGreen">Démarrer le quizz</a>
         </div>
-
-    </div>
-#}
-
-
-
-    <section class=" flex justify-center items-center w-[336px] h-[122px] border-4  m-auto lg:w-full lg:h-[100vh] lg:border-transparent">
-
-        <div class="flex lg:ml-[160px] lg:mt-[100px] justify-center items-center">
-            <div class="justify-center items-center">
-                <h1 class="collapse lg:text-[64px] lg:visible" >
-                    Questionnnaire
-                </h1>
-                <hr class="w-[610px] border-2">
-                <p class="text-[9px] lg:pt-[30px] lg:max-w-[630px] lg:text-[15px]">
-                    Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre
-                </p>
-
-                <button class="rounded-full h-[23px] w-[112px] bg-red-400  mt-[8px] ml-[30px] text-[12px] lg:h-[60px] lg:w-[240px] lg:bg-blue-300 lg:ml-[0px] lg:mt-[50px]">
-                    Démarer le quizz
-                </button>
-            </div>
-            <img class="w-[117px] h-[88px]  lg:ml-[95px] lg:w-[758px] lg:h-[597px]" src={{ asset('img/planet.svg') }}>
+        <div class="w-2/5">
+            <img class="w-full" src={{ asset('img/planet.svg') }}>
         </div>
-
-
     </section>
 
     <section class="  bg-new-red h-[630px] w-full pt-[10px]">
