@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<!--
+    <!--
     <div class="w-full h-[100vh] flex justify-center items-center flex-col gap-6">
         <h1 class="py-4 px-8 bg-gray-500">{{ question.title }}</h1>
         <div class="progress-bar-container relative w-full">
@@ -50,7 +50,7 @@
             <hr class="w-52 bg mt-4 mx-auto my-0">
             <div id="answers" class="flex flex-col gap-6 my-24 mx-16">
                 {% for key,answer in question.answers %}
-                    <label for="{{ key }}" class="group flex items-center h-24 px-10 rounded-lg gap-2 cursor-pointer focus-within:bg-white focus-within:text-lightPink transition-all">
+                    <label for="{{ key }}" class="group flex items-center h-24 px-10 rounded-lg gap-2 cursor-pointer focus-within:bg-white focus-within:text-lightPink transition-all answer-label" data-answer="{{ key }}" data-correct="{{ key == question.rightAnswer }}">
                         <div class="w-12 max-h-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0px_4px_4px_rgba(0,0,0,0.25)] text-lightPink group-focus-within:bg-lightPink group-focus-within:text-white transition-all">
                             <p class="font-black text-lg">{{ index[key] }}</p>
                         </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="flex justify-center items-center">
                 {% if nextQuestion is not null %}
-                    <a href="{{ path('app_question', {id: nextQuestion.id}) }}" onclick="verif()" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Question suivante</a>
+                    <a href="{{ path('app_question', {id: nextQuestion.id}) }}" id="nextQuestionLink" onclick="verif(event)" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Question suivante</a>
                 {% else%}
                     <form id="scoreForm" method="post" action="{{ path('app_submit_ranking') }}" style="display: none;">
                         <input type="hidden" name="score" id="scoreInput">
@@ -74,7 +74,7 @@
     </section>
     <script>
         function submitScore() {
-             // Récupérez le nom d'utilisateur ou utilisez 'Anonyme' par défaut
+            // Récupérez le nom d'utilisateur ou utilisez 'Anonyme' par défaut
             document.getElementById('name').value = sessionStorage.getItem('name') || 'Anonyme';
             document.getElementById('scoreInput').value = score;
             document.getElementById('scoreForm').submit();
@@ -83,21 +83,46 @@
         let score = sessionStorage.getItem("score") ? parseInt(sessionStorage.getItem("score")) : 0;
         let answered = false;
 
-        function verif(){
+        function showAnswerFeedback() {
+            const answerLabels = document.getElementsByClassName('answer-label');
+            for (let i = 0; i < answerLabels.length; i++) {
+                const correct = answerLabels[i].getAttribute('data-correct') === '1';
+                if (correct) {
+                    answerLabels[i].classList.add('bg-green-500');
+                    answerLabels[i].classList.remove('bg-red-500');
+                } else {
+                    answerLabels[i].classList.add('bg-red-500');
+                    answerLabels[i].classList.remove('bg-green-500');
+                }
+            }
+        }
+
+        function verif(event) {
+            event.preventDefault();
+
             if (answered) {
-                return; // Si la question a déjà été répondue, sortez de la fonction.
+                return;
             }
 
             const answer = document.querySelector('input[name="answer"]:checked').value;
             let rightAnswer = {{ question.rightAnswer }};
-            if(parseInt(answer) === parseInt(rightAnswer)){
+            if (parseInt(answer) === parseInt(rightAnswer)) {
                 score++;
             }
             sessionStorage.setItem("score", score.toString());
 
-            answered = true; // Marquez la question comme ayant été répondue.
+            showAnswerFeedback(); // Affiche les retours visuels pour les réponses correctes/incorrectes
+
+            setTimeout(() => {
+                showAnswerFeedback();
+                const nextQuestionLink = document.getElementById('nextQuestionLink');
+                window.location.href = nextQuestionLink.href;
+            }, 2000); // Changez cette valeur pour ajuster le délai
+
+            answered = true;
         }
+
     </script>
-    </script>
+
 
 {% endblock %}
