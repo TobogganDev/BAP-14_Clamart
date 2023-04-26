@@ -14,13 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Question
 {
 	public static function loadValidatorMetadata(ClassMetadata $metadata)
-	{
-		$metadata->addPropertyConstraint('rightAnswer', new Assert\Range([
-			'min' => 1,
-			'max' => 4,
-			'notInRangeMessage' => 'La valeur doit être entre {{ min }} et {{ max }}.',
-		]));
-	}
+         	{
+         		$metadata->addPropertyConstraint('rightAnswer', new Assert\Range([
+         			'min' => 1,
+         			'max' => 4,
+         			'notInRangeMessage' => 'La valeur doit être entre {{ min }} et {{ max }}.',
+         		]));
+         	}
 	
 	
 	
@@ -49,6 +49,9 @@ class Question
 	 */
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
     private array $answers = [];
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $explication = null;
 		
     public function getId(): ?int
     {
@@ -100,6 +103,18 @@ class Question
     public function setAnswers(?array $answers): self
     {
         $this->answers = $answers;
+
+        return $this;
+    }
+
+    public function getExplication(): ?string
+    {
+        return $this->explication;
+    }
+
+    public function setExplication(?string $explication): self
+    {
+        $this->explication = $explication;
 
         return $this;
     }

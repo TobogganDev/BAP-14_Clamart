@@ -28,7 +28,8 @@ class QuestionCrudController extends AbstractCrudController
             TextField::new('title'),
 	        BooleanField::new('visible'),
 	        IntegerField::new('rightAnswer'),
-	        ArrayField::new('answers')
+	        ArrayField::new('answers'),
+            TextEditorField::new('explication')
 	        ];
     }
     
