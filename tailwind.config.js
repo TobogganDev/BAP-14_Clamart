@@ -14,6 +14,8 @@ module.exports = {
       colors: {
         'new-green': '#21A59F',
         'new-red': '#E42353',
+        'lightPink': '#E42353',
+        'thisGreen': '#21A59F',
       },
       fontFamily:{
         nunito:" 'ninoto',sans-serif ",

@@ -1,41 +1,130 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <div class="w-full h-[100vh] flex justify-center items-center flex-col gap-6">
-        <h1 class="py-4 px-8 bg-gray-500">{{ question.title }}</h1>
-        <div class="progress-bar-container relative w-full">
-            <div class="progress-bar absolute top-0 left-0 bg-black h-[2px]"></div>
+    <div id="explanationModal" class="fixed z-50 top-0 left-0 w-1/2 h-[100vh] bg-black bg-opacity-50 hidden flex justify-center items-center">
+        <div class="bg-white rounded-lg p-8 w-4/5 md:w-1/2">
+            <h3 class="text-xl font-bold mb-4">Explication</h3>
+            <p>{{ question.explication }} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consectetur doloribus error est libero nihil sapiente temporibus velit? Accusantium cum doloremque eaque, eos facilis inventore nemo officiis possimus unde veritatis!</p>
+            <div class="flex justify-between">
+                <button id="closeExplanationModal" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Fermer</button>
+                <a id="nextQuestionFromModal" href="#" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Passer à la question suivante</a>
+            </div>
         </div>
-
-        <h2>{{  }}</h2>
-
-        <div class="grid grid-cols-2 gap-4 select-none" id="answers">
-            {% for key,answer in question.answers %}
-                <label for="{{ key }}" class="py-10 px-20 bg-gray-500">
-                    <input type="radio" name="answer" id="{{ key }}" value="{{ key }}">
-                    <span>{{ answer }}</span>
-                </label>
-            {% endfor %}
-        </div>
-        {% if nextQuestion is not null %}
-            <a href="{{ path('app_question', {id: nextQuestion.id}) }}" onclick="verif()">Question suivante</a>
-        {% else%}
-            <a href="">Valider</a>
-        {% endif %}
     </div>
 
-    <script>
-        var score = sessionStorage.getItem("score") ? parseInt(sessionStorage.getItem("score")) : 0;
 
-        function verif(){
-            var answer = document.querySelector('input[name="answer"]:checked').value;
-            var rightAnswer = {{ question.rightAnswer }};
-            if(parseInt(answer) === parseInt(rightAnswer)){
+    <section class="flex w-full h-[100vh]">
+        <div class="lg:w-1/2 h-[100vh] background-primary px-16 py-10">
+            <div class="flex flex-col gap-12">
+                <img src="/img/logo.png" alt="logo" class="w-60">
+                <a href="{{ path('app_index') }}" class="w-11 hover:-translate-y-1 transition-transform">
+                    <img src="/img/arrowBackRed.png" alt="return button" class="w-11">
+                </a>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <h2 class="font-bold text-2xl text-lightPink">Question {{ question.id }} sur 20</h2>
+                <hr class="w-32 bg-lightPink mt-2">
+                <img src="/img/homeDraw.png" alt="illustration" class="w-2/3 my-12">
+                <p class="max-w-lg font-black text-xl text-center">{{ question.title }}</p>
+            </div>
+
+        </div>
+        <div class="lg:w-1/2 h-[100vh] bg-thisGreen text-white relative">
+            <div class="w-12 h-12 rounded bg-white rotate-45 absolute top-20 -left-8"></div>
+            <h2 class="text-center text-2xl font-black mt-[85px]">Choisissez votre réponse</h2>
+            <hr class="w-52 bg mt-4 mx-auto my-0">
+            <div id="answers" class="flex flex-col gap-6 mx-16">
+                {% for key,answer in question.answers %}
+                    <label for="{{ key }}" class="group flex items-center h-24 px-10 rounded-lg gap-2 cursor-pointer focus-within:bg-white focus-within:text-lightPink transition-all answer-label hover:border-[1px]" data-answer="{{ key }}" data-correct="{{ key == question.rightAnswer }}">
+                        <div class="w-12 max-h-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0px_4px_4px_rgba(0,0,0,0.25)] text-lightPink group-focus-within:bg-lightPink group-focus-within:text-white transition-all">
+                            <p class="font-black text-lg">{{ index[key] }}</p>
+                        </div>
+                        <input class="-translate-x-16 -z-10" type="radio" name="answer" id="{{ key }}" value="{{ key }}">
+                        <span class="font-bold text-lg">{{ answer }} </span>
+                    </label>
+                {% endfor %}
+            </div>
+            <div class="flex justify-center items-center gap-x-8">
+                {% if nextQuestion is not null %}
+                    <a href="{{ path('app_question', {id: nextQuestion.id}) }}" id="nextQuestionLink" onclick="verif(event)" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Valider</a>
+                {% else%}
+                    <form id="scoreForm" method="post" action="{{ path('app_submit_ranking') }}" style="display: none;">
+                        <input type="hidden" name="score" id="scoreInput">
+                        <input type="hidden" name="name" id="name">
+                    </form>
+                    <a id="validation" href="#" onclick="submitScore()">Valider</a>
+
+                {% endif %}
+                <div class="flex justify-center items-center">
+                    <button id="showExplanation" class="hidden bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Voir l'explication</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function submitScore() {
+            // Récupérez le nom d'utilisateur ou utilisez 'Anonyme' par défaut
+            document.getElementById('name').value = sessionStorage.getItem('name') || 'Anonyme';
+            document.getElementById('scoreInput').value = score;
+            document.getElementById('scoreForm').submit();
+        }
+
+        let score = sessionStorage.getItem("score") ? parseInt(sessionStorage.getItem("score")) : 0;
+        let answered = false;
+
+        function showAnswerFeedback() {
+            const answerLabels = document.getElementsByClassName('answer-label');
+            for (let i = 0; i < answerLabels.length; i++) {
+                const correct = answerLabels[i].getAttribute('data-correct') === '1';
+                if (correct) {
+                    answerLabels[i].classList.add('bg-green-500');
+                    answerLabels[i].classList.remove('bg-red-500');
+                } else {
+                    answerLabels[i].classList.add('bg-red-500');
+                    answerLabels[i].classList.remove('bg-green-500');
+                }
+            }
+        }
+
+        function verif(event) {
+            event.preventDefault();
+
+            if (answered) {
+                return;
+            }
+
+            const answer = document.querySelector('input[name="answer"]:checked').value;
+            let rightAnswer = {{ question.rightAnswer }};
+            if (parseInt(answer) === parseInt(rightAnswer)) {
                 score++;
             }
             sessionStorage.setItem("score", score.toString());
+
+            showAnswerFeedback(); // Affiche les retours visuels pour les réponses correctes/incorrectes
+
+            // Affiche le modal d'explication
+            document.getElementById('explanationModal').classList.remove('hidden');
+
+            // Mise à jour du lien "Passer à la question suivante" dans le modal
+            const nextQuestionLink = document.getElementById('nextQuestionLink');
+            document.getElementById('nextQuestionFromModal').href = nextQuestionLink.href;
+
+            answered = true;
+            document.getElementById('showExplanation').classList.remove('hidden');
+
         }
+
+        document.getElementById('closeExplanationModal').addEventListener('click', () => {
+            document.getElementById('explanationModal').classList.add('hidden');
+        });
+
+        // Ajoutez un gestionnaire d'événements pour afficher le modal lors du clic sur le bouton "Voir l'explication"
+        document.getElementById('showExplanation').addEventListener('click', () => {
+            document.getElementById('explanationModal').classList.remove('hidden');
+        });
+
+
     </script>
+
 
 {% endblock %}

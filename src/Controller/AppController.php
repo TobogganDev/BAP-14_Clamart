@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Question;
 use App\Entity\Ranking;
+use App\Repository\FlashCardsRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\RankingRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -70,14 +71,32 @@ class AppController extends AbstractController
 		public function question(Question $question, QuestionRepository $questionRepository): Response
 		{
 			$nextQuestion = $questionRepository->findNextQuestion($question);
-			
+
 			while ($nextQuestion != null && $nextQuestion->isVisible() == false) {
 				$nextQuestion = $questionRepository->findNextQuestion($nextQuestion);
 			}
 
 			return $this->render('app/quizz/question.html.twig', [
 				'question' => $question,
-				'nextQuestion' => $nextQuestion
+				'nextQuestion' => $nextQuestion,
+                'index' => ['A', 'B', 'C', 'D']
+			]);
+		}
+		
+		
+		#[Route('/cards', name: 'app_cards')]
+		public function cards(FlashCardsRepository $cardsRepository): Response
+		{
+			return $this->render('app/cards.html.twig', [
+				'cards' => $cardsRepository->findAll(),
+			]);
+		}
+		
+		#[Route('/rank', name: 'app_rank')]
+		public function rank(RankingRepository $rankingRepository): Response
+		{
+			return $this->render('app/rank.html.twig', [
+				'ranks' => $rankingRepository->findAll(),
 			]);
 		}
 }
