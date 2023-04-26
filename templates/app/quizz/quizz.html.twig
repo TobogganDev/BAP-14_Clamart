@@ -19,23 +19,28 @@
     </div>
     -->
     <section class="w-full h-[100vh] flex ">
-        <div class="w-1/2 flex align-center">
+        <div class="w-1/2 flex align-center relative">
+            <div class=""></div>
+            <a href="{{ path('app_index') }}" class=" absolute top-12 left-10 w-11 hover:-translate-y-1 transition-transform">
+                <img src="/img/arrowBackRed.png" alt="return button" class="w-11">
+            </a>
             <img src="/img/earthLogo.svg" alt="earth illustration" class="w-4/5">
         </div>
         <div class="w-1/2 bg-thisGreen relative flex flex-col align-center items-center">
             <div class="w-12 h-12 rounded bg-white rotate-45 absolute top-20 -left-8"></div>
-            <img src="/img/logoWhite.png" alt="logo Clamart">
-            <div>
+            <img src="/img/logoWhite.png" alt="logo Clamart" class="my-20">
+            <div class="flex flex-col align-center items-center gap-8 mt-40">
                 {% if (app.user == '') %}
-                    <input type="text" id="name" name="name" id="name" placeholder="Pseudo" class="">
+                    <p class="text-white font-bold text-lg">Pour commencer le quizz, veuillez vous connecter.</p>
+                    <a href="{{ path('app_login') }}" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Connexion</a>
                 {% else %}
-                    <p>{{ app.user.name }}</p>
-                {% endif %}
+                    <p class="text-white">Vous êtes connecté en tant que : {{ app.user.name }}</p>
 
-                {% if question is not null %}
-                    <a href="{{ path('app_question', {'id': question.id}) }}" class="">Lancer le quiz</a>
-                {% else %}
-                    <p>Aucune question visible n'a été trouvée.</p>
+                    {% if question is not null %}
+                        <a href="{{ path('app_question', {'id': question.id}) }}" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Lancer le quiz</a>
+                    {% else %}
+                        <p class="text-white">Aucune question visible n'a été trouvée.</p>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
