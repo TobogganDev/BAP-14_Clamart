@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <div id="explanationModal" class="fixed z-50 top-0 left-0 w-1/2 h-[100vh] bg-black bg-opacity-50 hidden flex justify-center items-center">
         <div class="bg-white rounded-lg p-8 w-4/5 md:w-1/2">
             <h3 class="text-xl font-bold mb-4">Explication</h3>
@@ -33,7 +34,7 @@
             <div class="w-12 h-12 rounded bg-white rotate-45 absolute top-20 -left-8"></div>
             <h2 class="text-center text-2xl font-black mt-[85px]">Choisissez votre réponse</h2>
             <hr class="w-52 bg mt-4 mx-auto my-0">
-            <div id="answers" class="flex flex-col gap-6 mx-16">
+            <div id="answers" class="flex flex-col gap-6 my-20 mx-16">
                 {% for key,answer in question.answers %}
                     <label for="{{ key }}" class="group flex items-center h-24 px-10 rounded-lg gap-2 cursor-pointer focus-within:bg-white focus-within:text-lightPink transition-all answer-label hover:border-[1px]" data-answer="{{ key }}" data-correct="{{ key == question.rightAnswer }}">
                         <div class="w-12 max-h-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0px_4px_4px_rgba(0,0,0,0.25)] text-lightPink group-focus-within:bg-lightPink group-focus-within:text-white transition-all">
