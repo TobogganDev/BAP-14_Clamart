@@ -76,6 +76,24 @@ input{
 	background-repeat: no-repeat;
 	color: white;
 }
+
+
+.flash-red{
+	background-image: url("../../public/img/red.png");
+}
+
+.flash-card img{
+	width: 60%;
+}
+
+.flash-card h3{
+	font-size: 2rem;
+}
+
+.flash-card p{
+	font-size: 0.8rem;
+}
+
 @media (max-width: 1024px) {
 	.reward-card{
 		border-radius: 0px;
@@ -92,20 +110,12 @@ input{
 		border-top-right-radius: 1rem;
 		border-bottom-right-radius: 1rem;
 	}
-}
+	.flash-card{
+		width: 45%;
+		margin-bottom: 2%;
+	}
 
-.flash-red{
-	background-image: url("../../public/img/red.png");
-}
-
-.flash-card img{
-	width: 60%;
-}
-
-.flash-card h3{
-	font-size: 2rem;
-}
-
-.flash-card p{
-	font-size: 0.8rem;
+	.flash-card img{
+		width: 30%;
+	}
 }
