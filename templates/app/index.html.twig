@@ -1,130 +1,112 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="w-11/12 flex items-center mx-auto my-14  justify-between">
-        <div class="justify-center items-center w-2/5 ">
+    <section class="w-11/12 flex items-center mx-auto my-14 justify-between">
+        <div class="w-2/5 flex flex-col gap-6">
             <h1 class="font-bold text-6xl" >Questionnnaire</h1>
             <hr class="w-full bg-black">
-            <p class="">
+            <p>
                 Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, .
             </p>
-            <a href="{{ path('app_quizz') }}" class="py-4 bg-thisGreen mt-4">Démarrer le quizz</a>
+            <a href="{{ path('app_quizz') }}" class="py-2 px-8 text-white bg-thisGreen rounded-full w-fit text-xl">Démarrer le quizz</a>
         </div>
         <div class="w-2/5">
             <img class="w-full" src={{ asset('img/planet.svg') }}>
         </div>
     </section>
 
-    <section class="  bg-new-red h-[630px] w-full pt-[10px]">
-        <h2 class="text-[64px] ml-[100px] text-white">
-            Récompense
-        </h2>
-        <div class="flex h-[385px] ml-[109px]">
-            <div class="justify-center items-center mr-[70px] w-1/5 h-[442px] bg-white rounded-xl">
+    <section class="bg-new-red w-full py-10">
+        <div class="w-11/12 mx-auto">
+            <h2 class="text-white text-6xl">
+                Récompenses
+            </h2>
+            <div class="flex justify-between pt-10">
 
-                <img class="m-auto mt-[22px]" src={{ asset('img/scoot.png') }}>
-                <p class="w-[180px] m-auto mt-[10px] text-center">
-                    Un Scooter élétrique
-                    a gagné
-                </p>
-            </div>
-            <div class="justify-center items-center w-1/5 h-[442px] mr-[70px] bg-white rounded-xl">
+                <div class="reward-card">
+                    <img class="" src={{ asset('img/scoot.png') }}>
+                    <p class="">
+                        Un Scooter élétrique
+                        a gagné
+                    </p>
+                </div>
 
-                <img class="mt-[38px] m-auto" src={{ asset('img/bike.png') }}>
-                <p class="w-[180px] m-auto mt-[10px] text-center">
-                    Un vélo élétrique
-                    a gagné
-                </p>
+                <div class="reward-card">
+                    <img class="" src={{ asset('img/bike.png') }}>
+                    <p class="">
+                        Un vélo élétrique
+                        a gagné
+                    </p>
+                </div>
 
-            </div>
-            <div class="justify-center items-center w-1/5 h-[442px] mr-[70px] bg-white rounded-xl">
+                <div class="reward-card">
+                    <img class="" src={{ asset('img/brose.png') }}>
+                    <p class="">
+                        Des produits cosmétiques
+                        Bio et Responsable a gagné
+                    </p>
+                </div>
 
-                <img class="mt-[38px] m-auto" src={{ asset('img/brose.png') }}>
-                <p class="w-[250px] m-auto mt-[12px] text-center">
-                    Des produits cosmétiques
-                    Bio et Responsable a gagné
-                </p>
-
-            </div>
-            <div class="justify-center items-center w-1/5 h-[442px] bg-white rounded-xl">
-
-                <img class="mt-[38px] m-auto" src={{ asset('img/shop.png') }}>
-                <p class="w-[180px] m-auto mt-[32px] text-center">
-                    Des Bons d’achat dans les
-                    grandes surfaces en cadeau
-                </p>
-
-
+                <div class="reward-card">
+                    <img class="" src={{ asset('img/shop.png') }}>
+                    <p class="">
+                        Des Bons d’achat dans les
+                        grandes surfaces en cadeau
+                    </p>
+                </div>
             </div>
         </div>
-
-
     </section>
-    <section class="mt-[184px] ml-[107px] pb-[120px]">
-        <h2 class="text-[64px] mb-[38px]">
+
+    <section class="w-11/12 mx-auto my-14">
+        <h2 class="text-6xl font-semibold">
             Flashcard
         </h2>
-        <div class="flex w-full h-[506px]">
-            <div class="w-1/5 h-full border-4  justify-center items-center rounded-3xl bg-paint-blue bg-no-repeat bg-bottom">
 
-                <img class="m-auto mt-[15px] h-2/5" src={{ asset('img/light.png') }}>
-                <h3 class="text-[35px] m-auto w-3/4 text-center mt-[25px] text-white">
+        <div class="flex w-full mt-14 items-center justify-between">
+
+            <div class="flash-card">
+                <img src={{ asset('img/light.png') }}>
+                <h3>
                     Lorem Ipsum
                 </h3>
-                <p class="text-[14px] text-center w-[200px] m-auto mt-[10px] text-white">
+                <p>
                     Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
                 </p>
-                <button class=" border-4 ml-[110px] px-8 rounded-xl text-white border-white mt-[20px]">
-                    voir plus
-                </button>
             </div>
 
-            <div class="w-1/5 h-full border-4 ml-[45px] justify-center items-center rounded-3xl bg-paint-red bg-no-repeat bg-bottom">
-
-                <img class="m-auto mt-[15px] h-2/5" src={{ asset('img/light.png') }}>
-                <h3 class="text-[35px] mt-[25px] text-white m-auto w-3/4 text-center">
+            <div class="flash-card flash-red">
+                <img src={{ asset('img/light.png') }}>
+                <h3>
                     Lorem Ipsum
                 </h3>
-                <p class="text-[14px] text-center w-[200px] m-auto  mt-[10px] text-white">
+                <p>
                     Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
                 </p>
-                <button class=" border-4 m-auto ml-[110px] px-8 rounded-xl text-white border-white mt-[20px]">
-                    voir plus
-                </button>
             </div>
 
-            <div class="w-1/5 h-full border-4 ml-[45px] justify-center items-center rounded-3xl bg-paint-blue bg-no-repeat bg-bottom">
-
-                <img class="m-auto mt-[15px] h-2/5" src={{ asset('img/light.png') }}>
-                <h3 class="text-[35px] m-auto mt-[25px] text-white w-3/4 text-center">
+            <div class="flash-card">
+                <img src={{ asset('img/light.png') }}>
+                <h3>
                     Lorem Ipsum
                 </h3>
-                <p class="text-[14px] text-center w-[200px] m-auto mt-[10px] text-white">
+                <p>
                     Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
                 </p>
-                <button class=" border-4 ml-[110px] px-8 rounded-xl text-white border-white mt-[20px]">
-                    voir plus
-                </button>
             </div>
 
-            <div class="w-1/5 h-full border-4 ml-[45px] justify-center items-center rounded-3xl bg-paint-red bg-no-repeat bg-bottom">
-
-                <img class="m-auto mt-[15px] h-2/5" src={{ asset('img/light.png') }}>
-                <h3 class="text-[35px] m-auto w-3/4 mt-[25px] text-white text-center">
+            <div class="flash-card flash-red">
+                <img src={{ asset('img/light.png') }}>
+                <h3>
                     Lorem Ipsum
                 </h3>
-                <p class="text-[14px] text-center w-[200px] m-auto mt-[10px] text-white">
+                <p>
                     Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
                 </p>
-                <button class=" border-4 ml-[110px] px-8 rounded-xl text-white border-white mt-[20px]">
-                    voir plus
-                </button>
             </div>
-            <div class="h-[156px] justify-center items-center mb-[256px] ml-[25px] mt-[195px]">
 
+            <div class="hidden">
                 <img class="" src={{ asset('img/voir.png') }}>
             </div>
-
         </div>
     </section>
 
