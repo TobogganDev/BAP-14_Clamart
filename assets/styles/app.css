@@ -3,6 +3,19 @@ body{
 	@apply font-bold font-normal
 }
 
+::selection{
+	background: #21a59f;
+}
+
+::-webkit-scrollbar {
+	width: 6px !important;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px !important;
+	background-color: #21a59f !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,10 +24,6 @@ body{
 	body{
 		font-family: 'Nunito', sans-serif;
 	}
-}
-
-input{
-	@apply border-2 border-black;
 }
 
 .progress-bar{
@@ -127,4 +136,19 @@ input{
 	.flash-card img{
 		width: 30%;
 	}
+}
+
+.input-login{
+	background: #dcdcdc;
+	border-radius: 5px;
+	padding: 0.5rem 1rem;
+	outline: none;
+	width: 100%;
+}
+.login-btn{
+	transition: all .4s ease;
+}
+.login-btn:hover{
+	background: #e42353;
+	color: white;
 }

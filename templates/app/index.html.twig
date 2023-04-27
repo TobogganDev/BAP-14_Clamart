@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="w-11/12 flex items-center mx-auto my-14 justify-between">
+    {% include 'partial/header.html.twig' %}
+
+    <section class="w-11/12 flex items-center mx-auto my-20 justify-between">
         <div class="items-center text-center lg:text-left lg:items-start w-3/6 lg:w-2/5 flex flex-col gap-6">
             <h1 class="font-bold text-6xl" >Questionnnaire</h1>
             <hr class="w-full bg-black">
@@ -159,12 +161,6 @@
     <script src="{{ asset('js/slider.js') }}"></script>
 
     <script>
-        /*
-        const begin = document.getElementById('begin');
-        begin.addEventListener('click', () => {
-            sessionStorage.setItem('score', 0);
-        })
-        */
 
     </script>
 

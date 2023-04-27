@@ -19,7 +19,7 @@
             <div class="flex flex-col gap-12">
                 <img src="/img/logo.png" alt="logo" class="w-60">
                 <a href="{{ path('app_index') }}" class="w-11 hover:-translate-y-1 transition-transform">
-                    <img src="/img/arrowBackRed.png" alt="return button" class="w-11">
+                    <img src="{{ asset('img/arrow.svg') }}" alt="return button" class="w-11">
                 </a>
             </div>
             <div class="flex flex-col justify-center items-center">
@@ -109,6 +109,7 @@
             // Mise à jour du lien "Passer à la question suivante" dans le modal
             const nextQuestionLink = document.getElementById('nextQuestionLink');
             document.getElementById('nextQuestionFromModal').href = nextQuestionLink.href;
+            nextQuestionLink.style.display = 'none';
 
             answered = true;
             document.getElementById('showExplanation').classList.remove('hidden');

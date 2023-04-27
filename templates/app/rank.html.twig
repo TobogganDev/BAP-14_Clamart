@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    {% include 'partial/header.html.twig' %}
     <div class="w-11/12 mx-auto mt-[5rem]">
         <div class="flex items-center w-full">
-            <a href="{{ path('app_index') }}">
-                <img src="{{ asset('img/arrow.svg') }}" alt="arrow icon" class="w-[65px] h-[65px]">
+            <a href="{{ path('app_index') }}" class="w-11 hover:-translate-y-1 transition-transform">
+                <img src="{{ asset('img/arrow.svg') }}" alt="return button" class="w-11">
             </a>
 
             <h1 class="text-center font-semibold text-[40px] w-full">Classement du quizz</h1>
@@ -57,3 +57,6 @@
     </div>
 
 {% endblock %}
+
+
+
