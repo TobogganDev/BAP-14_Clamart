@@ -109,6 +109,7 @@
             // Mise à jour du lien "Passer à la question suivante" dans le modal
             const nextQuestionLink = document.getElementById('nextQuestionLink');
             document.getElementById('nextQuestionFromModal').href = nextQuestionLink.href;
+            nextQuestionLink.style.display = 'none';
 
             answered = true;
             document.getElementById('showExplanation').classList.remove('hidden');
