@@ -39,13 +39,113 @@ class AppFixtures extends Fixture
 
 				$manager->flush();
 				
-				for ($i = 0; $i < 10; $i++) {
-					$question = new Question();
-					$question->setTitle('Question ' . $i);
-					$question->setRightAnswer(1);
-					$question->setVisible(true);
-					$question->setAnswers(['test1', 'test2', 'test3', 'test4']);
-					$manager->persist($question);
+				$questions = [
+					'Quelle proportion des flux de données sur Internet est représentée par le streaming vidéo ?',
+					"Quel est l'un des principaux objectifs pour lutter contre la pollution numérique ?",
+					"Pourquoi la production d'un téléviseur est-elle coûteuse en termes d'impact environnemental ?",
+					"Quel est l'un des problèmes liés à l'extraction des minerais pour la production d'équipements électroniques ?",
+					"Quel est l'impact du déploiement de la 5G sur la pollution numérique ?",
+					"Comment peut-on prolonger la durée de vie des équipements et terminaux numériques ?",
+					"Quelle est l'une des recommandations pour réduire son empreinte numérique environnementale ?",
+					"Qu'est-ce qui fait que l'utilisation de Google pour effectuer des recherches a un impact environnemental ?",
+					"Combien de grammes de CO2 sont émis pour une recherche sur Google ?",
+					"Quel pourcentage d'émissions de gaz à effet de serre dans le domaine du numérique est lié aux objets connectés ?",
+					"Quelle proportion des objets connectés est recyclée ?",
+					"Que recommande-t-on pour réduire son empreinte carbone lors de l'utilisation d'Internet ?",
+					"Quel pourcentage de Français préfère les entreprises respectueuses de l'environnement ?"
+				];
+				
+				$answers = [
+					[
+						'10%',
+						'25%',
+						'60%',
+						'80%',
+					],
+					[
+						"Utiliser davantage d'objets informatiques",
+						"Changer régulièrement d'appareils électroniques",
+						"Utiliser moins d'objets informatiques et les faire durer plus longtemps",
+						"Encourager la production de plus de déchets électroniques"
+					],
+					[
+						"Elle ne nécessite pas beaucoup d'énergie",
+						"Elle n'utilise pas de matières premières",
+						"Elle nécessite l'extraction de 2,5 tonnes de matières premières et génère 350 kg de CO₂",
+						"Elle n'a aucun impact sur l'environnement"
+					],
+					[
+						"Aucun problème environnemental ni humain",
+						"Amélioration de la biodiversité",
+						"Pollution des écosystèmes et drames humains liés à l'activité minière",
+						"Diminution de la consommation d'énergie fossile"
+					],
+					[
+						"Réduction de la pollution numérique",
+						"Aucun impact sur la pollution numérique",
+						"Aggravation de la pollution numérique",
+						"Diminution de la consommation d'énergie"
+					],
+					[
+						"Changer de smartphone dès qu'un nouveau modèle sort",
+						"Ne changer de smartphone que lorsqu'il n'est plus fonctionnel",
+						"Ne pas recycler les téléphones en fin de vie",
+						"Utiliser uniquement des terminaux neufs"
+					],
+					[
+						"Changer fréquemment de smartphone",
+						"Utiliser le réseau le plus énergivore",
+						"Télécharger des applications et vidéos inutiles",
+						"Éteindre sa box internet lorsqu'on est absent ou la nuit"
+					],
+					[
+						"Le temps de recherche et le nombre de pages consultées",
+						"La couleur de l'interface Google",
+						"Le type d'appareil utilisé pour effectuer la recherche",
+						"Le lieu où la recherche est effectuée"
+					],
+					[
+						"1 gramme",
+						"3 grammes",
+						"5 grammes",
+						"7 grammes",
+					],
+					[
+						"10%",
+						"25%",
+						"39%",
+						"55%"
+					],
+					[
+						"5%",
+						"20%",
+						"50%",
+						"80%"
+					],
+					[
+						"Ouvrir de nombreux onglets simultanément",
+						"Utiliser un moteur de recherche respectueux de l'environnement comme Ecosia",
+						"Regarder des vidéos en haute définition",
+						"Stocker toutes ses données sur le Cloud"
+					],
+					[
+						"50%",
+						"65%",
+						"80%",
+						"95%"
+					],
+				];
+				
+				
+				foreach ($questions as $question){
+					$quest = new Question();
+					$quest->setTitle($question);
+					$quest->setRightAnswer(1);
+					$quest->setVisible(true);
+					foreach ($answers as $answer){
+						$quest->setAnswers($answer);
+					}
+					$manager->persist($quest);
 				}
 				
 				$manager->flush();

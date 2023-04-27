@@ -30,16 +30,18 @@
     </section>
 
     <script>
-
-        console.log()
         const start = document.getElementById('start');
 
-        start.addEventListener('click', function () {
-            if ("{{ app.user.name }}" != ""){
-                const name = "{{ app.user.name }}";
-                sessionStorage.setItem('name', name);
-            }
-            sessionStorage.setItem('score', 0);
-        });
+            start.addEventListener('click', function () {
+                if ("{{ app.user.name }}" != ""){
+                    const name = "{{ app.user.name }}";
+                    sessionStorage.setItem('name', name);
+                    sessionStorage.setItem('score', 0);
+
+                } else {
+                    sessionStorage.setItem('score', 0);
+
+                }
+            });
     </script>
 {% endblock %}

@@ -86,13 +86,15 @@ body{
 	align-items: center;
 	text-align: center;
 	width: 320px;
-	padding: 2rem 2.5rem;
+	height: 600px;
+	padding: 2rem 1.5rem;
 	gap: 2rem;
 	background-image: url("../../public/img/blue.png");
 	background-size: cover;
 	background-position: bottom;
 	background-repeat: no-repeat;
 	color: white;
+	position: relative;
 }
 
 
@@ -101,12 +103,12 @@ body{
 }
 
 .flash-card img{
-	width: 60%;
+	width: 40%;
 }
 
 .flash-card h3{
 	color: black;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	font-weight: 700;
 }
 
@@ -153,9 +155,6 @@ body{
 .login-btn:hover{
 	background: #e42353;
 	color: white;
-}
-
-thead{
 }
 
 td{
