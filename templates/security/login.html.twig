@@ -2,16 +2,21 @@
 
 
 {% block body %}
-    {% include 'partial/header.html.twig' %}
-    <section class="w-full h-[80vh] flex items-center">
-        <div class="w-1/2 text-new-red px-48">
-            <form method="post" class="flex flex-col gap-6 font-semibold">
+
+
+    <section class="w-full h-[100vh] flex items-center">
+        <div class="-z-10 mr-[5%]">
+            <img src="{{ asset('img/new-login-bg.svg') }}" alt="login" class="w-full h-full object-cover ">
+        </div>
+        <div class="w-1/2 text-new-red px-48 bg-new-green h-[100vh] justify-center flex flex-col">
+            <img src="{{ asset('img/logoWhite.png') }}" alt="login" class="w-1/3 items-center mx-auto mb-[5%]">
+            <form method="post" class="flex flex-col gap-6 font-semibold ">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
 
-                <h1 class="text-3xl border-b-2 text-center pb-2">Connexion</h1>
+                <h1 class="text-3xl border-b-2 pb-2">Connexion</h1>
                 <label for="inputEmail">Email</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control input-login" autocomplete="email" required autofocus>
                 <label for="inputPassword">Mot de passe</label>
@@ -40,8 +45,6 @@
                 Pas encore de compte  ? <a href="{{ path('app_register') }}" class="underline">Inscription</a>
             </div>
         </div>
-        <div class="-z-10">
-            <img src="{{ asset('img/login-bg.png') }}" alt="login" class="w-full h-full object-cover ">
-        </div>
+
     </section>
 {% endblock %}
