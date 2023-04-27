@@ -99,4 +99,10 @@ class AppController extends AbstractController
 				'ranks' => $rankingRepository->findAll(),
 			]);
 		}
+		
+		#[Route('/final', name: 'app_final')]
+		public function final(): Response
+		{
+			return $this->render('app/quizz/final.html.twig');
+		}
 }

@@ -20,7 +20,7 @@
                     <p class="text-white">Vous êtes connecté en tant que : {{ app.user.name }}</p>
 
                     {% if question is not null %}
-                        <a href="{{ path('app_question', {'id': question.id}) }}" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Lancer le quiz</a>
+                        <a href="{{ path('app_question', {'id': question.id}) }}" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white" id="start">Lancer le quiz</a>
                     {% else %}
                         <p class="text-white">Aucune question visible n'a été trouvée.</p>
                     {% endif %}
@@ -30,13 +30,16 @@
     </section>
 
     <script>
-        const nameInput = document.getElementById('name');
 
-        if (nameInput) {
-            nameInput.addEventListener('change', function () {
-                const name = nameInput.value;
+        console.log()
+        const start = document.getElementById('start');
+        
+        start.addEventListener('click', function () {
+            if ("{{ app.user.name }}" != ""){
+                const name = "{{ app.user.name }}";
                 sessionStorage.setItem('name', name);
-            });
-        }
+            }
+            sessionStorage.setItem('score', 0);
+        });
     </script>
 {% endblock %}
