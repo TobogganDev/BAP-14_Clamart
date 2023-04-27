@@ -2,7 +2,7 @@
 
 {% block body %}
     {% include 'partial/header.html.twig' %}
-    <div class="w-11/12 mx-auto mt-[5rem]">
+    <div class="w-11/12 mx-auto mt-[2rem]">
         <div class="flex items-center w-full">
             <a href="{{ path('app_index') }}" class="w-11 hover:-translate-y-1 transition-transform">
                 <img src="{{ asset('img/arrow.svg') }}" alt="return button" class="w-11">
@@ -12,45 +12,61 @@
         </div>
 
 
-        <div class="flex justify-between mt-[5rem] w-full ">
-            <div class="w-5/12 flex">
-                <div class="relative ranking bg-[#CCE5D0] flex items-center justify-center">
-                    <img src="{{ asset('img/first.png') }}" alt="first" class="absolute top-0 left-0">
-                    <div class="text-center">
-                        <p>20/20</p>
-                        <p>1m 13s</p>
-                        <p>Admin</p>
+        <div class="flex justify-between mt-[3rem] w-full ">
+            <div class="w-5/12 flex flex-col">
+                <div class="flex justify-center">
+                    <div class="relative ranking bg-[#CCE5D0] flex items-center justify-center">
+                        <img src="{{ asset('img/first.png') }}" alt="first" class="absolute top-0 left-0">
+                        <div class="text-center">
+                            <p>20/20</p>
+                            <p>1m 13s</p>
+                            <p>Admin</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="relative ranking bg-[#4D8E8E] flex items-center justify-center">
-                    <img src="{{ asset('img/second.png') }}" alt="first" class="absolute top-0 left-0">
-                    <div class="text-center text-white">
-                        <p>20/20</p>
-                        <p>1m 13s</p>
-                        <p>Admin</p>
+                <div class="flex justify-between">
+                    <div class="relative ranking bg-[#4D8E8E] flex items-center justify-center">
+                        <img src="{{ asset('img/second.png') }}" alt="first" class="absolute top-0 left-0">
+                        <div class="text-center text-white">
+                            <p>17/20</p>
+                            <p>2m 00s</p>
+                            <p>Admin</p>
+                        </div>
+                    </div>
+                    <div class="relative ranking bg-[#E42353] flex items-center justify-center">
+                        <img src="{{ asset('img/third.png') }}" alt="first" class="absolute top-0 left-0">
+                        <div class="text-center text-white">
+                            <p>15/20</p>
+                            <p>1m 20s</p>
+                            <p>Admin</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="relative ranking bg-[#E42353] flex items-center justify-center">
-                    <img src="{{ asset('img/third.png') }}" alt="first" class="absolute top-0 left-0">
-                    <div class="text-center text-white">
-                        <p>20/20</p>
-                        <p>1m 13s</p>
-                        <p>Admin</p>
-                    </div>
-                </div>
+
+
             </div>
-            <div class="w-6/12 bg-[#21A59F] py-4 px-8 rounded-[15px] h-[60vh] rank-wrapper">
+            <div class="w-6/12 bg-[#21A59F] py-4 px-8 rounded-[15px] rank-wrapper">
                 <table class="w-full text-white">
-                    <thead class="">
+                    <thead class="uppercase font-thin pb-8">
                         <tr>
                             <th>Place</th>
-                            <th>Nom</th>
                             <th>Score</th>
                             <th>Temps</th>
                         </tr>
                     </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <td  class="text-transparent">riugyurbg</td>
+                        </tr>
+                        {% for user in ranks %}
+                            <tr class="pb-2 tracking-wide">
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.score }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>

@@ -23,23 +23,6 @@ class AppController extends AbstractController
         ]);
     }
 
-    //#[Route('/submit-ranking', name: 'app_submit_ranking', methods: ['POST'])]
-    //public function submitRanking(Request $request, EntityManagerInterface $em)
-    //{
-    //$name = $request->request->get('name');
-    //$score = $request->request->getInt('score');
-
-    //$ranking = new Ranking();
-    //$ranking->setName($name);
-    //$ranking->setScore($score);
-
-    // $em->persist($ranking);
-    // $em->flush();
-
-    // return $this->redirectToRoute('app_question', ['id' => 1]); // Remplacez 1 par l'ID de la première question du quiz.
-    //}
-
-
     #[Route('/submit-ranking', name: 'app_submit_ranking', methods: ['POST'])]
     public function submitRanking(Request $request, EntityManagerInterface $em, QuestionRepository $questionRepository)
     {
