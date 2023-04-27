@@ -143,3 +143,10 @@ body{
 	background: #e42353;
 	color: white;
 }
+
+thead{
+}
+
+td{
+	@apply pb-2 tracking-wider;
+}
