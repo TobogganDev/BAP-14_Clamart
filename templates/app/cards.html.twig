@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% include 'partial/header.html.twig' %}
 
     <div class="grid w-10/12 mx-auto grid-cols-4 p-[5rem] gap-6">
         {% for card in cards %}
