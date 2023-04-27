@@ -25,16 +25,16 @@
                 <div class="reward-card bleft">
                     <img class="" src={{ asset('img/scoot.png') }}>
                     <p class="">
-                        Un Scooter élétrique
-                        a gagné
+                        Un Scooter électrique
+                        à gagner
                     </p>
                 </div>
 
                 <div class="reward-card">
                     <img class="" src={{ asset('img/bike.png') }}>
                     <p class="">
-                        Un vélo élétrique
-                        a gagné
+                        Un vélo électrique
+                        à gagner
                     </p>
                 </div>
 
@@ -42,7 +42,7 @@
                     <img class="" src={{ asset('img/brose.png') }}>
                     <p class="">
                         Des produits cosmétiques
-                        Bio et Responsable a gagné
+                        Bio et Responsable à gagner
                     </p>
                 </div>
 
@@ -62,59 +62,109 @@
             Flashcard
         </h2>
 
+
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper ">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <div class="flash-card">
+                    <img src={{ asset('img/light.png') }}>
+                    <h3>
+                        Lorem Ipsum
+                    </h3>
+                    <p>
+                        Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
+                    </p>
+                </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="flash-card flash-red">
+                    <img src={{ asset('img/light.png') }}>
+                    <h3>
+                        Lorem Ipsum
+                    </h3>
+                    <p>
+                        Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
+                    </p>
+                </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="flash-card">
+                        <img src={{ asset('img/light.png') }}>
+                        <h3>
+                            Lorem Ipsum
+                        </h3>
+                        <p>
+                            Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="flash-card flash-red">
+                        <img src={{ asset('img/light.png') }}>
+                        <h3>
+                            Lorem Ipsum
+                        </h3>
+                        <p>
+                            Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="flash-card">
+                        <img src={{ asset('img/light.png') }}>
+                        <h3>
+                            Lorem Ipsum
+                        </h3>
+                        <p>
+                            Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="flash-card flash-red">
+                        <img src={{ asset('img/light.png') }}>
+                        <h3>
+                            Lorem Ipsum
+                        </h3>
+                        <p>
+                            Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+        </div>
+
         <div class="flex w-full mt-14 items-center justify-between flex-wrap lg:flex-nowrap">
 
-            <div class="flash-card">
-                <img src={{ asset('img/light.png') }}>
-                <h3>
-                    Lorem Ipsum
-                </h3>
-                <p>
-                    Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
-                </p>
-            </div>
 
-            <div class="flash-card flash-red">
-                <img src={{ asset('img/light.png') }}>
-                <h3>
-                    Lorem Ipsum
-                </h3>
-                <p>
-                    Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
-                </p>
-            </div>
-
-            <div class="flash-card">
-                <img src={{ asset('img/light.png') }}>
-                <h3>
-                    Lorem Ipsum
-                </h3>
-                <p>
-                    Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
-                </p>
-            </div>
-
-            <div class="flash-card flash-red">
-                <img src={{ asset('img/light.png') }}>
-                <h3>
-                    Lorem Ipsum
-                </h3>
-                <p>
-                    Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset.
-                </p>
-            </div>
-
+            <!--
             <div class="hidden">
                 <img class="" src={{ asset('img/voir.png') }}>
             </div>
+            -->
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="{{ asset('js/slider.js') }}"></script>
 
     <script>
+        /*
         const begin = document.getElementById('begin');
         begin.addEventListener('click', () => {
             sessionStorage.setItem('score', 0);
         })
+        */
 
     </script>
 
