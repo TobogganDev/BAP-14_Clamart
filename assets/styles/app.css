@@ -76,6 +76,23 @@ input{
 	background-repeat: no-repeat;
 	color: white;
 }
+@media (max-width: 1024px) {
+	.reward-card{
+		border-radius: 0px;
+		border: none;
+	}
+	.reward-card p{
+		display: none;
+	}
+	.bleft{
+		border-top-left-radius: 1rem;
+		border-bottom-left-radius: 1rem;
+	}
+	.bright{
+		border-top-right-radius: 1rem;
+		border-bottom-right-radius: 1rem;
+	}
+}
 
 .flash-red{
 	background-image: url("../../public/img/red.png");
