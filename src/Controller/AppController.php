@@ -7,6 +7,7 @@ use App\Entity\Ranking;
 use App\Repository\FlashCardsRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\RankingRepository;
+use ContainerHgkISE6\getFlashCardsRepositoryService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(RankingRepository $rankingRepository): Response
+    public function index(FlashCardsRepository $flashCardsRepository): Response
     {
         return $this->render('app/index.html.twig', [
-            'ranks' => $rankingRepository->findAll(),
+            'flashCards' => $flashCardsRepository->findAll(),
         ]);
     }
 

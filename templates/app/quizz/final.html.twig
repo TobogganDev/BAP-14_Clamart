@@ -1,5 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% include 'partial/header.html.twig' %}
+    <div class="relative flex flex-col items-center justify-center gap-24">
+        <a href="{{ path('app_index') }}" class="w-11 absolute top-12 left-10 hover:-translate-y-1 transition-transform">
+            <img src="{{ asset('img/arrow.svg') }}" alt="return button" class="w-11">
+        </a>
+        <h2 class="mt-24 text-6xl font-bold">Votre score :</h2>
+        <p class="text-6xl font-bold"><span id="score"></span>12 / 20</p>
+        <a href="{{ path('app_index') }}" class="py-2 px-8 text-white bg-thisGreen rounded-full w-fit text-xl hover:bg-lightPink hover:text-white">Retour à l'accueil</a>
+
+    </div>
+
+
+    <script>
+        const score = document.getElementById('score');
+        const scoreValue = localStorage.getItem('score');
+        score.innerHTML = scoreValue;
+        console.log(scoreValue)
+    </script>
 
 {% endblock %}

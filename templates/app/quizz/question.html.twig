@@ -8,7 +8,7 @@
             <p>{{ question.explication }} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consectetur doloribus error est libero nihil sapiente temporibus velit? Accusantium cum doloremque eaque, eos facilis inventore nemo officiis possimus unde veritatis!</p>
             <div class="flex justify-between">
                 <button id="closeExplanationModal" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Fermer</button>
-                <a id="nextQuestionFromModal" href="#" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Passer à la question suivante</a>
+                <a id="nextQuestionFromModal" href="#" class="mt-4 bg-blue-500 max-w-fit text-white px-4 py-2 rounded hover:bg-blue-600">Passer à la question suivante</a>
             </div>
         </div>
     </div>
@@ -49,11 +49,11 @@
                 {% if nextQuestion is not null %}
                     <a href="{{ path('app_question', {id: nextQuestion.id}) }}" id="nextQuestionLink" onclick="verif(event)" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Valider</a>
                 {% else%}
-                    <form id="scoreForm" method="post" action="{{ path('app_submit_ranking') }}" style="display: none;">
+                    <form id="scoreForm" method="post" action="{{ path('app_final') }}" style="display: none;">
                         <input type="hidden" name="score" id="scoreInput">
                         <input type="hidden" name="name" id="name">
                     </form>
-                    <a id="validation" href="#" onclick="submitScore()">Valider</a>
+                    <a id="validation" href="#" onclick="submitScore()" class="bg-white text-lightPink px-16 py-3 rounded-full font-black text-lg hover:bg-lightPink hover:text-white">Finir le questionnaire</a>
 
                 {% endif %}
                 <div class="flex justify-center items-center">
@@ -124,7 +124,6 @@
         document.getElementById('showExplanation').addEventListener('click', () => {
             document.getElementById('explanationModal').classList.remove('hidden');
         });
-
 
     </script>
 

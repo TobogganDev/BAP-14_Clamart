@@ -89,7 +89,7 @@ body{
 	padding: 2rem 2.5rem;
 	gap: 2rem;
 	background-image: url("../../public/img/blue.png");
-	background-size: contain;
+	background-size: cover;
 	background-position: bottom;
 	background-repeat: no-repeat;
 	color: white;
@@ -105,7 +105,9 @@ body{
 }
 
 .flash-card h3{
-	font-size: 2rem;
+	color: black;
+	font-size: 1.2rem;
+	font-weight: 700;
 }
 
 .flash-card p{
